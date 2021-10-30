@@ -35,6 +35,7 @@ class Groups(commands.Cog):
     async def join(self, ctx, arg='group', arg2='-1'):
         # load the groups from the csv
         groups = load_groups()
+        student_pool = load_pool()
 
         # get the name of the caller
         member_name = ctx.message.author.display_name.upper()
@@ -60,6 +61,12 @@ class Groups(commands.Cog):
             groups[group_num].append(member_name)
             await ctx.send('You are now in ' + group_num.title() + '!')
             print_groups(groups)
+            # updates the group number of the member in the name_mapping.csv
+            for key in student_pool.keys():
+                if key == member_name:
+                    student_pool[key][1] = group_num
+                    break
+            print_pool(student_pool)
 
         # error handling
         else:
@@ -89,6 +96,7 @@ class Groups(commands.Cog):
 
         # load groups csv
         groups = load_groups()
+        student_pool = load_pool()
 
         # get the name of the caller
         member_name = ctx.message.author.display_name.upper()
@@ -103,6 +111,11 @@ class Groups(commands.Cog):
             if member_name in groups[group_num]:
                 groups[group_num].remove(member_name)
                 await ctx.send('You have been removed from ' + group_num.title() + '!')
+                for key in student_pool.keys():
+                    if key == member_name:
+                        student_pool[key][1] = -1
+                        break
+                print_pool(student_pool)
             # else error message
             else:
                 await ctx.send('You are not in ' + group_num.title())
@@ -186,6 +199,40 @@ class Groups(commands.Cog):
     #
     #     print_pool(student_pool)
 
+    # -------------------------------------------------------------------------------------------------------
+    #    Function: automatic_grouping(self, ctx)
+    #    Description: automatically assigns students who are not part of a group into vacant groups
+    #    Inputs:
+    #    - self: used to access parameters passed to the class through the constructor
+    #    - ctx: used to access the values passed through the current context
+    #    Outputs: adds the user to the given group or returns an error if the group is invalid or in case of
+    #             syntax errors
+    # -------------------------------------------------------------------------------------------------------
+    @commands.dm_only()
+    @commands.has_permissions(administrator=True)
+    @commands.command(
+        name='auto-assign',
+        help="use $auto-assign to automatically assign students who are not part of a group into vacant groups",
+        pass_context=True
+    )
+    async def automatic_grouping(self, ctx):
+
+        await ctx.send("Auto Assigned Students into Groups")
+        student_pool = load_pool()
+        groups = load_groups()
+        vacant_groups = get_vacant_groups(groups)
+
+
+        for key in student_pool.keys():
+            if student_pool[key][1] == '-1':
+                vacant_group = get_minimum(vacant_groups)
+                groups[vacant_group].append(key)
+                print_groups(groups)
+                student_pool[key][1] = vacant_group
+                print_pool(student_pool)
+                vacant_groups[vacant_group] = vacant_groups[vacant_group]+1
+
+        await ctx.send("Successfully Assigned Students into Groups")
 
 # -----------------------------------------------------------
 # Used to load the groups from the csv file into a dictionary
@@ -232,9 +279,9 @@ def load_pool() -> dict:
     os.chdir('server_data')
     with open('name_mapping.csv', mode='r') as infile:
         reader = csv.reader(infile)
-        student_pools = {rows[0].upper(): rows[1].upper() for rows in reader}
-    return student_pools
+        student_pools = {rows[0].upper(): [rows[1].upper(), rows[2]] for rows in reader}
 
+    return student_pools
 
 # -----------------------------------------------------------
 # Used to print the members to the csv file
@@ -246,9 +293,32 @@ def print_pool(pools):
     os.chdir('server_data')
     with open('name_mapping.csv', mode='w', newline="") as outfile:
         writer = csv.writer(outfile)
-        for key, value in pools.items():
-            writer.writerow([key, value])
+        for key in pools.keys():
+            while len(pools[key]) < 2:
+                pools[key].append(None)
+            writer.writerow([key]+ pools[key])
 
+# -----------------------------------------------------------
+# retrieves group numbers with vacant spots
+# -----------------------------------------------------------
+def get_vacant_groups(groups)-> dict:
+
+    vacant_groups = {}
+    for group_number in groups.keys():
+        if len(groups[group_number]) < 6:
+            vacant_groups[group_number] = len(groups[group_number])
+
+    return vacant_groups
+
+# -----------------------------------------------------------
+# retrieves group number with minimum student count
+# -----------------------------------------------------------
+def get_minimum(vacant_groups):
+
+    vacant_groups = dict(sorted(vacant_groups.items(), key=lambda x: x[1]))
+    minimum = list(vacant_groups.keys())[0]
+
+    return minimum
 
 # -----------------------------------------------------------
 # add the file to the bot's cog system

@@ -46,7 +46,7 @@ class Helper(commands.Cog):
         )  # finds the unverified role in the guild
         if (
             unverified in member.roles
-        ):  # checks if the user running the command has the unveirifed role
+        ):  # checks if the user running the command has the unverified role
             if name == None:
                 await ctx.send(
                     "To use the verify command, do: $verify <your_full_name> \n ( For example: $verify Jane Doe )"
@@ -59,7 +59,7 @@ class Helper(commands.Cog):
                     "data/server_data/name_mapping.csv", mode="a", newline=""
                 ) as outfile:  # storing discord name and actual name in name_mapping.csv
                     writer = csv.writer(outfile)
-                    writer.writerow([member.name, name])
+                    writer.writerow([member.name, name, -1])
                 await member.add_roles(verified)  # adding verfied role
                 await member.remove_roles(unverified)  # removed verfied role
                 await ctx.send(
