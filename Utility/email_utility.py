@@ -1,3 +1,4 @@
+import os
 import smtplib
 from email import encoders
 from email.mime.base import MIMEBase
@@ -7,9 +8,9 @@ from email.mime.multipart import MIMEMultipart
 class EmailUtility:
 
     def __init__(self):
-        self.username = 'username'
-        self.password = 'password'
-        self.from_address = 'classmatebot@gmail.com'
+        self.username = os.getenv("USERNAME")
+        self.password = os.getenv("PASSWORD")
+        self.from_address = 'no-reply@classmatebot.com'
         self.subject = 'CLASSMATE BOT NOTIFICATION'
 
     def send_email(self, recipient: str, attachment=None, subject: str = '', body: str = '', filename: str = ''):
@@ -24,9 +25,9 @@ class EmailUtility:
 
         if attachment:
             part = MIMEBase('application', "octet-stream")
-            part.set_payload(attachment.read())
+            part.set_payload(attachment)
             encoders.encode_base64(part)
-            part.add_header('Content-Disposition', 'attachment; filename= %s' % filename)
+            part.add_header('Content-Disposition', 'attachment', filename=filename)
             msg.attach(part)
 
         try:
@@ -40,4 +41,3 @@ class EmailUtility:
         except Exception as error:
             print(error.__str__())
             print("failed to send mail to " + recipient)
-
