@@ -77,6 +77,14 @@ async def test_groupError(bot):
     #     assert dpytest.verify().message().contains().content(
     #         'To use the join command, do: $join \'Group\' <Num> \n ( For example: $join Group 0 )')
 
+# ------------------------------------
+# Tests cogs/groups.py autogrouping
+# ------------------------------------
+@pytest.mark.asyncio
+async def test_automatic_grouping(bot):
+    await dpytest.message("$auto-assign")
+    assert dpytest.verify().message().contains().content("Successfully Assigned Students into Groups")
+
 
 # -----------------------
 # Tests cogs/deadline.py

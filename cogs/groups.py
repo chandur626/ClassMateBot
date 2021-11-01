@@ -217,19 +217,22 @@ class Groups(commands.Cog):
     )
     async def automatic_grouping(self, ctx):
 
-        await ctx.send("Auto Assigned Students into Groups")
+        # load name_mapping csv
         student_pool = load_pool()
-        groups = load_groups()
-        vacant_groups = get_vacant_groups(groups)
 
+        # load groups csv
+        groups = load_groups()
+
+        # returns a dictionary with group numbers as keys and number of vacant spots available as values.
+        vacant_groups = get_vacant_groups(groups)
 
         for key in student_pool.keys():
             if student_pool[key][1] == '-1':
                 vacant_group = get_minimum(vacant_groups)
                 groups[vacant_group].append(key)
-                print_groups(groups)
+                print_groups(groups) # update groups csv file to reflect new members in the group
                 student_pool[key][1] = vacant_group
-                print_pool(student_pool)
+                print_pool(student_pool) # update group number in name_mapping csv
                 vacant_groups[vacant_group] = vacant_groups[vacant_group]+1
 
         await ctx.send("Successfully Assigned Students into Groups")
