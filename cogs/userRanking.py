@@ -1,16 +1,25 @@
+# Copyright (c) 2021
+# This functionality tracks student activity and rewards students with level ups. Students can track their activity
+# with $levels and see their progress towards the next level. The bot continually listens for user messages and adds
+# it to the user's personal experience/level score which is stored in data/participation/users.json
 from math import floor
-
 import discord
 from discord.ext import commands
 import json
 from datetime import datetime
-
 
 class userRanking(commands.Cog):
 
     def __init__(self, client):
         self.client = client
 
+    # -----------------------------------------------------------------------------------------------------------------
+    #    Function: on_member_join(self, member)
+    #    Description: Sees a user has joined and adds their information to data/participation/users.json
+    #    Inputs:
+    #    - self: used to access parameters passed to the class through the constructor
+    #    - member: used to access the values passed through the current context
+    # -----------------------------------------------------------------------------------------------------------------
     @commands.Cog.listener()
     async def on_member_join(self, member):
         with open('data/participation/users.json', 'r') as f:
@@ -21,6 +30,13 @@ class userRanking(commands.Cog):
         with open('data/participation/users.json', 'w') as f:
             json.dump(users, f, indent=4)
 
+    # -----------------------------------------------------------------------------------------------------------------
+    #    Function: on_message(self, message)
+    #    Description: Sees a user message and updates data/participation/users.json
+    #    Inputs:
+    #    - self: used to access parameters passed to the class through the constructor
+    #    - message: used to access the values passed through the current context
+    # -----------------------------------------------------------------------------------------------------------------
     @commands.Cog.listener()
     async def on_message(self, message):
         if not message.author.bot:
@@ -46,10 +62,10 @@ class userRanking(commands.Cog):
         experience = users[str(user.id)]['experience']
         lvl = users[str(user.id)]['level']
         lvl_end = 5 * (lvl ** 2) + (50 * lvl) + 100
-        print(user)
-        print(f"Level:{lvl}")
-        print(f"experience:{experience}")
-        print(f"lvl_end: {lvl_end} ")
+        # print(user)
+        # print(f"Level:{lvl}")
+        # print(f"experience:{experience}")
+        # print(f"lvl_end: {lvl_end} ")
 
         if lvl_end <= experience:
             channel = self.client.get_channel(900580609540362303)
@@ -62,6 +78,15 @@ class userRanking(commands.Cog):
                  dt_time.month + 10000 * dt_time.day + 100 * dt_time.hour + dt_time.minute
         return int(answer)
 
+    # -----------------------------------------------------------------------------------------------------------------
+    #    Function: level(self, ctx, user)
+    #    Description: Outputs a student's level/progress which is stored in data/participation/users.json
+    #    Inputs:
+    #    - self: used to access parameters passed to the class through the constructor
+    #    - ctx: used to access the values passed through the current context
+    #    - user: the user that created the command
+    #    Outputs: returns a message with a progress bar on the user's progress
+    # -----------------------------------------------------------------------------------------------------------------
     @commands.command()
     async def level(self, ctx, user: discord.Member = None):
         with open('data/participation/users.json', 'r') as f:
@@ -117,6 +142,15 @@ class userRanking(commands.Cog):
         with open('data/participation/users.json', 'w') as f:
             json.dump(users, f, indent=4)
 
+    # -----------------------------------------------------------------------------------------------------------------
+    #    Function: add_database(self, ctx, user)
+    #    Description: Add a user to the database in data/participation/users.json
+    #    Inputs:
+    #    - self: used to access parameters passed to the class through the constructor
+    #    - ctx: used to access the values passed through the current context
+    #    - user: the user that needs to be added
+    #    Outputs: updates users.json or indicates if user is already in the database
+    # -----------------------------------------------------------------------------------------------------------------
     @commands.command()
     async def add_database(self, ctx, user: discord.Member):
         with open('data/participation/users.json', 'r') as f:
@@ -133,6 +167,8 @@ class userRanking(commands.Cog):
         with open('data/participation/users.json', 'w') as f:
             json.dump(users, f, indent=4)
 
-
+# -------------------------------------
+# add the file to the bot's cog system
+# -------------------------------------
 def setup(bot):
     bot.add_cog(userRanking(bot))
