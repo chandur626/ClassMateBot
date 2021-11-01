@@ -242,10 +242,10 @@ class Groups(commands.Cog):
 
 
         if bool(modifications):
-            await ctx.send("Successfully assigned students into groups")
             await ctx.send("Following updates are made:")
             for key, values in modifications.items():
                 await ctx.send(key +  " : " + values)
+            await ctx.send("Successfully assigned students into groups")
 
         else:
             await ctx.send("No modifications made. Every Student is part of a Group")
@@ -334,7 +334,7 @@ def get_minimum(vacant_groups):
 
     vacant_groups = dict(sorted(vacant_groups.items(), key=lambda x: x[1]))
     minimum = list(vacant_groups.keys())[0]
-    
+
     return minimum
 
 # -----------------------------------------------------------
