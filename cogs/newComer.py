@@ -59,7 +59,7 @@ class Helper(commands.Cog):
                     "data/server_data/name_mapping.csv", mode="a", newline=""
                 ) as outfile:  # storing discord name and actual name in name_mapping.csv
                     writer = csv.writer(outfile)
-                    writer.writerow([member.name, name, -1])
+                    writer.writerow([member.name, name, -1]) # initially group number is assigned to -1
                 await member.add_roles(verified)  # adding verfied role
                 await member.remove_roles(unverified)  # removed verfied role
                 await ctx.send(

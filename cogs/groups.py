@@ -209,7 +209,6 @@ class Groups(commands.Cog):
     #             syntax errors
     # -------------------------------------------------------------------------------------------------------
     @commands.dm_only()
-    @commands.has_permissions(administrator=True)
     @commands.command(
         name='auto-assign',
         help="use $auto-assign to automatically assign students who are not part of a group into vacant groups",
@@ -225,17 +224,32 @@ class Groups(commands.Cog):
 
         # returns a dictionary with group numbers as keys and number of vacant spots available as values.
         vacant_groups = get_vacant_groups(groups)
+        modifications = {}
 
         for key in student_pool.keys():
             if student_pool[key][1] == '-1':
                 vacant_group = get_minimum(vacant_groups)
-                groups[vacant_group].append(key)
+                if None in groups[vacant_group]:
+                    index = groups[vacant_group].index(None)
+                    groups[vacant_group][index] = key
+                else :
+                    groups[vacant_group].append(key)
                 print_groups(groups) # update groups csv file to reflect new members in the group
                 student_pool[key][1] = vacant_group
                 print_pool(student_pool) # update group number in name_mapping csv
+                modifications[key] = vacant_group
                 vacant_groups[vacant_group] = vacant_groups[vacant_group]+1
 
-        await ctx.send("Successfully Assigned Students into Groups")
+
+        if bool(modifications):
+            await ctx.send("Successfully assigned students into groups")
+            await ctx.send("Following updates are made:")
+            for key, values in modifications.items():
+                await ctx.send(key +  " : " + values)
+
+        else:
+            await ctx.send("No modifications made. Every Student is part of a Group")
+
 
 # -----------------------------------------------------------
 # Used to load the groups from the csv file into a dictionary
@@ -320,7 +334,7 @@ def get_minimum(vacant_groups):
 
     vacant_groups = dict(sorted(vacant_groups.items(), key=lambda x: x[1]))
     minimum = list(vacant_groups.keys())[0]
-
+    
     return minimum
 
 # -----------------------------------------------------------
