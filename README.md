@@ -27,18 +27,17 @@
 
 ## :dart: Basic Overview
 
-This project helps to improve the life of students, TAs and teachers by automating many mundane tasks which are sometimes done manually. ClassMateBot is a discord bot made in Python and could be used for any discord channel.
+This project helps to improve the life of students, TAs and teachers by automating many mundane tasks which are sometimes done manually. ClassMateBot is a discord bot made in Python and could be used for any discord channel. 
+
+In Iteration 2, we added 5 main quality-of-life improvements to be more useful to admins (Professor and TA) and students alike.
 
 ---
 
 ## :orange_book: Description
 
-There are three basic user groups in a ClassMateBot, which are Students, Professor and TAs. Some basic tasks for the bot for the students user group should be automating the task of group making for projects or homewroks, Projection deadline reminders, etc. For TAs it is taking up polls, or answering FAQs asked by the students. 
+There are three basic user groups in a ClassMateBot, which are Students, Professor and TAs. Some basic tasks for the bot for the students user group should be automating the task of group making for projects or homewroks, Projection deadline reminders, etc. For TAs it is taking up polls, or answering FAQs asked by the students. Our ClassMateBot focuses on the student side of the discord channel, i.e. currently it focuses on the problems faced by the students while using these discord channels.The user stories covered here would be more concerned about the activities for the channel for Software Engineering class in North Carolina State University for the Fall 2021 semester.
 
-
-Our ClassMateBot focuses on the student side of the discord channel, i.e. currently it focuses on the problems faced by the students while using these discord channels.
-
-The user stories covered here would be more concerned about the activities for the channel for Software Engineering class in North Carolina State University for the Fall 2021 semester.
+For Iteration 2, we aimed to expand the Bot's functionality so Professors and TAs can be more efficient and widened our scope outside of just our Software Engineering class. We researched how different classes in different programs (ex. Social Sciences, English, Humanities) could benefit from an improved bot. We believe our bot's commands like auto-grouping students, sending emails directly from discord to students, sentiment analysis, visualizing data/statistics, greatly benefits class management and information distribution. 
 
 ---
 
@@ -70,16 +69,16 @@ Another unique and useful feature of our ClassMateBot is that it helps the stude
 1. Clone the Github repository to a desired location on your computer. You will need [git](https://git-scm.com/) to be preinstalled on your machine. Once the repository is cloned, you will then ```cd``` into the local repository.
 ```
 git clone https://github.com/War-Keeper/ClassMateBot.git
-cd War-Keeper
+cd (into the ClassMateBot folder. If you type the commmand "ls", you should see the contents of the ClassMateBot folder)
 ```
 2. This project uses Python 3, so make sure that [Python](https://www.python.org/downloads/) and [Pip](https://pip.pypa.io/en/stable/installation/) are preinstalled. All requirements of the project are listed in the ```requirements.txt``` file. Use pip to install all of those.
 ```
 pip install -r requirements.txt
 ```
-3. Once the installation is complete, you will need to get the .env file that contains the bot token information. Please contact [Walter Brown](https://github.com/wevanbrown) to get the token information.
+3. Once the installation is complete with requirements installed, you have to generate a .env file and place it in the root of your project folder. The .env file contains your bot TOKEN and your Discord GUILD (guild is your discord server name). [Check out this video](https://youtu.be/nW8c7vT6Hl4?t=256) to see how you can setup your discord developer settings and .env file. You may also contact Niraj Lavani (nrlavani@ncsu.edu) for additional information on this process. 
 ```
 PLEASE DO NOT SHARE THE TOKEN ONLINE, 
-DO NOT UPLOAD TO GITHUB OR ELSE THE TOKEN WILL AUTOMATICALLY GET DESTROYED AND HAS TO BE REGENERATED
+DO NOT UPLOAD TO GITHUB OR ELSE THE TOKEN WILL AUTOMATICALLY GET DESTROYED AND HAS TO BE REGENERATED.
 ```
 4. Once all the requirements are installed, use the python command to run the ```bot.py``` file.
 ```
