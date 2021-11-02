@@ -40,8 +40,8 @@ There are three basic user groups in a ClassMateBot, which are Students, Profess
 For Iteration 2, we aimed to expand the Bot's functionality so Professors and TAs can be more efficient and widened our scope outside of just our Software Engineering class. We researched how different classes in different programs (ex. Social Sciences, English, Humanities) could benefit from an improved bot. We believe our bot's commands like auto-grouping students, sending emails directly from discord to students, sentiment analysis, visualizing data/statistics, greatly benefits class management and information distribution. 
 
 ---
-### 0 Original Features
-You can find the Original Features from Project one [here](https://github.com/chandur626/ClassMateBot/blob/README-update/docs/Iteration1Features.md)
+### 0 - Original Features
+You can find the Original Features from project one [here](https://github.com/chandur626/ClassMateBot/blob/README-update/docs/Iteration1Features.md)
 
 ### 1 - Auto-Grouping Students (Pallavi)
 
@@ -52,7 +52,7 @@ You can find the Original Features from Project one [here](https://github.com/ch
 ### 4 - Data Visualization
 Admins (In this case, TAs and Professors) can quickly make graphcs and charts directly in discord to share with students/users. Admins can use this feature to share grade distributions, lecture participation/attendance, or other course statistics. Pre-existing graph commands (such as grades or attendance) were made for ease-of-use so there are less command arguments for the admin to type. If the admin requires a custom chart, a command exists to do just that where admins can specify all data labels and information. All charts are named and stored into a json file when they are created. Students have acess to a command that allows them to view previously presented charts. 
 
-### 5 - Links (Sandy)
+### 5 - Link Collection (Sandesh)
 
 ### 6 - User Participation Ranking
 Users are all given a participation rank the moment they join a discord community with the ClassMateBot. As the user participates in the server, such as replying to the professor, answering questions, helping other students, etc., they increase their participation score. Courses within the Humanities and Social Sciences rely on student participation. Professors can use this feature to check which students are participating more and factor that into a class participation grade. Users can also check which level/rank they hold. Admins also have the ability to add/remove points from users.
