@@ -1,38 +1,43 @@
-# Copyright (c) 2021 War-Keeper
-import discord
-from discord.ext import commands
+"""
+ Copyright (c) 2021 War-Keeper
+"""
 import os
 import csv
+import discord
+from discord.ext import commands
 
 
-# -----------------------------------------------------------
-# This File contains commands for joining a group, leaving a group,
-# and displaying which groups are available
-# -----------------------------------------------------------
+
 class Groups(commands.Cog):
+
+    """
+     This File contains commands for joining a group, leaving a group,
+     and displaying which groups are available
+    """
     student_pool = {}
     groups = {}
 
-    # -----------------------------------------------------------
-    # initialize
-    # -----------------------------------------------------------
+    """
+     initialize
+    """
     def __init__(self, bot):
         self.bot = bot
 
-    # -------------------------------------------------------------------------------------------------------
-    #    Function: join(self, ctx, arg='group', arg2='-1')
-    #    Description: joins the user to the given group
-    #    Inputs:
-    #    - self: used to access parameters passed to the class through the constructor
-    #    - ctx: used to access the values passed through the current context
-    #    - arg: the name of the group
-    #    - arg2: the number of the group
-    #    Outputs: adds the user to the given group or returns an error if the group is invalid or in case of
-    #             syntax errors
-    # -------------------------------------------------------------------------------------------------------
+
     @commands.command(name='join', help='To use the join command, do: $join \'Group\' <Num> \n \
     ( For example: $join Group 0 )', pass_context=True)
     async def join(self, ctx, arg='group', arg2='-1'):
+        """
+            Function: join(self, ctx, arg='group', arg2='-1')
+            Description: joins the user to the given group
+            Inputs:
+            - self: used to access parameters passed to the class through the constructor
+            - ctx: used to access the values passed through the current context
+            - arg: the name of the group
+            - arg2: the number of the group
+            Outputs: adds the user to the given group or returns an error if the group is invalid or in case of
+                     syntax errors
+        """
         # load the groups from the csv
         groups = load_groups()
         student_pool = load_pool()
@@ -73,26 +78,30 @@ class Groups(commands.Cog):
             await ctx.send('Not a valid group')
             await ctx.send('To use the join command, do: $join \'Group\' <Num> \n ( For example: $join Group 0 )')
 
-    # this handles errors related to the join command
+
     @join.error
     async def join_error(self, ctx, error):
+        """
+            this handles errors related to the join command
+        """
         if isinstance(error, commands.MissingRequiredArgument):
             await ctx.send('To use the join command, do: $join \'Group\' <Num> \n ( For example: $join Group 0 )')
 
-    # -------------------------------------------------------------------------------------------------------
-    #    Function: remove(self, ctx, arg='group', arg2='-1')
-    #    Description: removes the user from the given group
-    #    Inputs:
-    #    - self: used to access parameters passed to the class through the constructor
-    #    - ctx: used to access the values passed through the current context
-    #    - arg: the name of the group
-    #    - arg2: the number of the group
-    #    Outputs: removes the user from the given group or returns an error if the group is invalid or in
-    #             case of syntax errors
-    # -------------------------------------------------------------------------------------------------------
+
     @commands.command(name='remove', help='To use the remove command, do: $remove \'Group\' <Num> \n \
     ( For example: $remove Group 0 )', pass_context=True)
     async def remove(self, ctx, arg='group', arg2='-1'):
+        """
+               Function: remove(self, ctx, arg='group', arg2='-1')
+               Description: removes the user from the given group
+               Inputs:
+               - self: used to access parameters passed to the class through the constructor
+               - ctx: used to access the values passed through the current context
+               - arg: the name of the group
+               - arg2: the number of the group
+               Outputs: removes the user from the given group or returns an error if the group is invalid or in
+                        case of syntax errors
+           """
 
         # load groups csv
         groups = load_groups()
@@ -135,24 +144,29 @@ class Groups(commands.Cog):
             await ctx.send('To use the remove command, do: $remove \'Group\' <Num> \n \
             ( For example: $remove Group 0 )')
 
-    # this handles errors related to the remove command
+
     @remove.error
     async def remove_error(self, ctx, error):
+        """
+         this handles errors related to the remove command
+        """
         if isinstance(error, commands.MissingRequiredArgument):
             await ctx.send('To use the remove command, do: $remove \'Group\' <Num> \n \
             ( For example: $remove Group 0 )')
 
-    # -------------------------------------------------------------------------------------------------------
-    #    Function: group(self, ctx)
-    #    Description: prints the list of groups
-    #    Inputs:
-    #    - self: used to access parameters passed to the class through the constructor
-    #    - ctx: used to access the values passed through the current context
-    #    Outputs: prints the list of groups
-    # -------------------------------------------------------------------------------------------------------
+
     @commands.command(name='group', help='print amount of groups that are full', pass_context=True)
     @commands.dm_only()
     async def group(self, ctx):
+
+        """
+            Function: group(self, ctx)
+            Description: prints the list of groups
+            Inputs:
+            - self: used to access parameters passed to the class through the constructor
+            - ctx: used to access the values passed through the current context
+            Outputs: prints the list of groups
+        """
 
         # load groups csv
         groups = load_groups()
@@ -182,11 +196,12 @@ class Groups(commands.Cog):
         if count >= 20:
             await ctx.send(embed=embed2)
 
-    # -----------------------------------------------------------
-    # This is a testing arg, not really used for anything else but adding to the csv file
-    # -----------------------------------------------------------
+
     # @commands.command(name='test_name', help='add a name to the name_mapping.csv', pass_context=True)
     # async def test_name(self, ctx, arg, arg2):
+    #         """
+    #          This is a testing arg, not really used for anything else but adding to the csv file
+    #         """
     #     student_pool = load_pool()
     #     display_name = ctx.message.author.display_name
     #     display_name_upper = display_name.upper()
@@ -199,15 +214,6 @@ class Groups(commands.Cog):
     #
     #     print_pool(student_pool)
 
-    # -------------------------------------------------------------------------------------------------------
-    #    Function: automatic_grouping(self, ctx)
-    #    Description: automatically assigns students who are not part of a group into vacant groups
-    #    Inputs:
-    #    - self: used to access parameters passed to the class through the constructor
-    #    - ctx: used to access the values passed through the current context
-    #    Outputs: adds the user to the given group or returns an error if the group is invalid or in case of
-    #             syntax errors
-    # -------------------------------------------------------------------------------------------------------
     @commands.dm_only()
     @commands.has_permissions(administrator=True)
     @commands.command(
@@ -216,6 +222,16 @@ class Groups(commands.Cog):
         pass_context=True
     )
     async def automatic_grouping(self, ctx):
+
+        """
+           Function: automatic_grouping(self, ctx)
+           Description: automatically assigns students who are not part of a group into vacant groups
+           Inputs:
+            - self: used to access parameters passed to the class through the constructor
+            - ctx: used to access the values passed through the current context
+            Outputs: adds the user to the given group or returns an error if the group is invalid or in case of
+                     syntax errors
+       """
 
         # load name_mapping csv
         student_pool = load_pool()
@@ -252,12 +268,12 @@ class Groups(commands.Cog):
             await ctx.send("No modifications made. Every Student is part of a Group")
 
 
-# -----------------------------------------------------------
-# Used to load the groups from the csv file into a dictionary
-# -----------------------------------------------------------
 def load_groups() -> dict:
-    dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    os.chdir(dir)
+    """
+     Used to load the groups from the csv file into a dictionary
+    """
+    directory = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    os.chdir(directory)
     os.chdir('data')
     os.chdir('server_data')
     with open('groups.csv', mode='r') as infile:
@@ -271,12 +287,12 @@ def load_groups() -> dict:
     return group
 
 
-# -----------------------------------------------------------
-# Used to print the groups to the csv file
-# -----------------------------------------------------------
 def print_groups(group):
-    dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    os.chdir(dir)
+    """
+     Used to print the groups to the csv file
+    """
+    directory = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    os.chdir(directory)
     os.chdir('data')
     os.chdir('server_data')
     with open('groups.csv', mode='w', newline="") as outfile:
@@ -287,12 +303,12 @@ def print_groups(group):
             writer.writerow([key] + group[key])
 
 
-# ------------------------------------------------------------
-# Used to load the members from the csv file into a dictionary
-# ------------------------------------------------------------
 def load_pool() -> dict:
-    dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    os.chdir(dir)
+    """
+     Used to load the members from the csv file into a dictionary
+    """
+    directory = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    os.chdir(directory)
     os.chdir('data')
     os.chdir('server_data')
     with open('name_mapping.csv', mode='r') as infile:
@@ -301,12 +317,13 @@ def load_pool() -> dict:
 
     return student_pools
 
-# -----------------------------------------------------------
-# Used to print the members to the csv file
-# -----------------------------------------------------------
+
 def print_pool(pools):
-    dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    os.chdir(dir)
+    """
+     Used to print the members to the csv file
+    """
+    directory = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    os.chdir( directory)
     os.chdir('data')
     os.chdir('server_data')
     with open('name_mapping.csv', mode='w', newline="") as outfile:
@@ -316,10 +333,11 @@ def print_pool(pools):
                 pools[key].append(None)
             writer.writerow([key]+ pools[key])
 
-# -----------------------------------------------------------
-# retrieves group numbers with vacant spots
-# -----------------------------------------------------------
+
 def get_vacant_groups(groups)-> dict:
+    """
+     retrieves group numbers with vacant spots
+    """
 
     vacant_groups = {}
     for group_number in groups.keys():
@@ -328,18 +346,20 @@ def get_vacant_groups(groups)-> dict:
 
     return vacant_groups
 
-# -----------------------------------------------------------
-# retrieves group number with minimum student count
-# -----------------------------------------------------------
+
 def get_minimum(vacant_groups):
+    """
+     retrieves group number with minimum student count
+    """
 
     vacant_groups = dict(sorted(vacant_groups.items(), key=lambda x: x[1]))
     minimum = list(vacant_groups.keys())[0]
 
     return minimum
 
-# -----------------------------------------------------------
-# add the file to the bot's cog system
-# -----------------------------------------------------------
+
 def setup(bot):
+    """
+     add the file to the bot's cog system
+    """
     bot.add_cog(Groups(bot))
