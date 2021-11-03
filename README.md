@@ -44,7 +44,7 @@ For Iteration 2, we aimed to expand the Bot's functionality so Professors and TA
 
 ---
 ### 0 - Original Features
-You can find the Original Features from project one [here](https://github.com/chandur626/ClassMateBot/blob/README-update/docs/Iteration1Features.md)
+You can find the Original Features from Iteration 1 [here](https://github.com/chandur626/ClassMateBot/blob/README-update/docs/Iteration1Features.md)
 
 ### 1 - Auto-Grouping Students (Pallavi)
 
@@ -53,11 +53,17 @@ You can find the Original Features from project one [here](https://github.com/ch
 ### 3 - Sentiment Analysis (Harini)
 
 ### 4 - Data Visualization
+
+<p align="left"><img width=75% src="https://user-images.githubusercontent.com/60410421/139969198-dcd79af8-eb59-4fa7-934b-aca7023574a0.gif"></p>
+
 Admins (In this case, TAs and Professors) can quickly make graphcs and charts directly in discord to share with students/users. Admins can use this feature to share grade distributions, lecture participation/attendance, or other course statistics. Pre-existing graph commands (such as grades or attendance) were made for ease-of-use so there are less command arguments for the admin to type. If the admin requires a custom chart, a command exists to do just that where admins can specify all data labels and information. All charts are named and stored into a json file when they are created. Students have acess to a command that allows them to view previously presented charts. 
 
 ### 5 - Link Collection (Sandesh)
 
 ### 6 - User Participation Ranking
+
+<p align="left"><img width=75% src="https://user-images.githubusercontent.com/60410421/139969309-90b590b4-fe72-45ca-9956-b65bbf6db7b9.gif"></p>
+
 Users are all given a participation rank the moment they join a discord community with the ClassMateBot. As the user participates in the server, such as replying to the professor, answering questions, helping other students, etc., they increase their participation score. Courses within the Humanities and Social Sciences rely on student participation. Professors can use this feature to check which students are participating more and factor that into a class participation grade. Users can also check which level/rank they hold. Admins also have the ability to add/remove points from users.
 
 ---
