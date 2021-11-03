@@ -26,8 +26,8 @@
 
 ## :dart: Basic Overview
 
+https://user-images.githubusercontent.com/60410421/140225894-5da3c56e-829f-4407-ba72-c0878081e388.mp4
 
-https://user-images.githubusercontent.com/60410421/139967894-183c1014-ded8-4154-bb0c-343bf1d1f995.mp4
 
 
 This project helps to improve the life of students, TAs and teachers by automating many mundane tasks which are sometimes done manually. ClassMateBot is a discord bot made in Python and could be used for any discord channel. 
