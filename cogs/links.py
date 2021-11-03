@@ -20,14 +20,14 @@ class links(commands.Cog):
         url=[]
         message_links = []
         temp=[]
-        regex = r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))"
+        regex = r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))"  # regex to match the url
         url = re.findall(regex, message.content)
         test= re.findall(regex, message.content) is not None
         for x in url:
             temp.append(x[0])
         if temp:
             message_links.append(message.content)
-            with open('.\data\links\links.txt', "a") as f:
+            with open('.\data\links\links.txt', "a") as f:                     #writing all the url to links.txt
                 f.write("Message containing Link :-  " + message.content + "\n")
                 f.close()
         else:
