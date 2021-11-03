@@ -1,5 +1,4 @@
-<p align="center"><img width=20.5% src="https://github.com/War-Keeper/ClassMateBot/blob/main/data/neworange.png"></p>
-<p align="center"><img width=60% src="https://github.com/War-Keeper/ClassMateBot/blob/main/data/bot.png"></p>
+<p align="center"><img width=100% src="https://github.com/chandur626/ClassMateBot/blob/README-update/data/title.png"></p>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 ![Python](https://img.shields.io/badge/python-v3.6+-yellow.svg)
@@ -26,6 +25,10 @@
 ---
 
 ## :dart: Basic Overview
+
+
+https://user-images.githubusercontent.com/60410421/139967894-183c1014-ded8-4154-bb0c-343bf1d1f995.mp4
+
 
 This project helps to improve the life of students, TAs and teachers by automating many mundane tasks which are sometimes done manually. ClassMateBot is a discord bot made in Python and could be used for any discord channel. 
 
@@ -82,8 +85,46 @@ python3 bot.py
 ```
 
 ---
+## Version 2 Commands
+Data Visualization
 
-## :computer: Commands
+:open_file_folder: [$grades command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/Verification/verify.md)
+
+:open_file_folder: [$attendance command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/Verification/verify.md)
+
+:open_file_folder: [$customchart command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/Verification/verify.md)
+
+:open_file_folder: [$checkgrade command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/Verification/verify.md)
+
+:open_file_folder: [$checkattendance command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/Verification/verify.md)
+
+:open_file_folder: [$checkchart command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/Verification/verify.md)
+
+
+User Ranking
+
+:open_file_folder: [$levels command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/Verification/verify.md)
+
+:open_file_folder: [$add_database command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/Verification/verify.md)
+
+
+Email Verification
+
+
+
+Auto-Grouping
+
+
+
+Sentiment Analysis
+
+
+
+Link Saving
+
+
+
+## Original Commands
 For the newComer.py file
 
 :open_file_folder: [$verify command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/Verification/verify.md)
