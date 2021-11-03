@@ -7,7 +7,7 @@ The code that implements the above mentioned gits functionality is located [here
 # Code Description
 ## Functions
 
-1. def def grades(self, ctx, chart: str, aGrade: int, bGrade: int, cGrade: int, dGrade: int, fGrade: int): <br>
+1. def grades(self, ctx, chart: str, aGrade: int, bGrade: int, cGrade: int, dGrade: int, fGrade: int): <br>
 This function creates a graph by getting the type of chart the admin wants, and the data points for each grade. 
 
 # How to run it? (Small Example)
