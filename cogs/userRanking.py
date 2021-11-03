@@ -3,11 +3,16 @@ from math import floor
 import discord
 from discord.ext import commands
 import json
+import sys
+import os
 from datetime import datetime
+
 
 class userRanking(commands.Cog):
 
     def __init__(self, client):
+        cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        os.chdir(cur_dir)
         self.client = client
 
     @commands.Cog.listener()
@@ -23,11 +28,13 @@ class userRanking(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
         if not message.author.bot:
+            cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            os.chdir(cur_dir)
             with open('data/participation/users.json', 'r') as f:
                 users = json.load(f)
             await self.update_data(users, message.author)
             await self.add_experience(users, message.author)
-            await self.level_up(users, message.author, message.channel)
+            await self.level_up(users, message.author)
 
             with open('data/participation/users.json', 'w') as f:
                 json.dump(users, f, indent=4)
@@ -37,13 +44,11 @@ class userRanking(commands.Cog):
             users[str(user.id)] = {}
             users[str(user.id)]['experience'] = 0
             users[str(user.id)]['level'] = 1
-            #users[str(user.id)]['LastMessage'] = await self.to_integer(datetime.now())
 
     async def add_experience(self, users, user):
         users[str(user.id)]['experience'] += 15
-        #users[str(user.id)]['LastMessage'] = await self.to_integer(datetime.now())
 
-    async def level_up(self, users, user, message):
+    async def level_up(self, users, user):
         experience = users[str(user.id)]['experience']
         lvl = users[str(user.id)]['level']
         lvl_end = 5 * (lvl ** 2) + (50 * lvl) + 100
@@ -73,10 +78,10 @@ class userRanking(commands.Cog):
                 users[str(ctx.author.id)] = {}
                 users[str(ctx.author.id)]['experience'] = 0
                 users[str(ctx.author.id)]['level'] = 0
-                #users[str(ctx.author.id)]['LastMessage'] = await self.to_integer(datetime.now())
+
             user = ctx.author
             lvl = int(users[str(ctx.author.id)]['level'])
-            exp = int(5 * (lvl ** 2) + (50 * lvl) + 100) #XP cap
+            exp = int(5 * (lvl ** 2) + (50 * lvl) + 100)  # XP cap
             experience = int(users[str(user.id)]['experience'])
             boxes = floor((experience * 20) / exp)
 
@@ -117,10 +122,6 @@ class userRanking(commands.Cog):
 
         with open('data/participation/users.json', 'w') as f:
             json.dump(users, f, indent=4)
-
-
-
-
 
     @commands.command()
     async def add_database(self, ctx, user: discord.Member):
