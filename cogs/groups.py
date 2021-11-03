@@ -209,6 +209,7 @@ class Groups(commands.Cog):
     #             syntax errors
     # -------------------------------------------------------------------------------------------------------
     @commands.dm_only()
+    @commands.has_permissions(administrator=True)
     @commands.command(
         name='auto-assign',
         help="use $auto-assign to automatically assign students who are not part of a group into vacant groups",
