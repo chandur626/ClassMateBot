@@ -268,6 +268,32 @@ class Groups(commands.Cog):
             await ctx.send("No modifications made. Every Student is part of a Group")
 
 
+    @commands.Cog.listener()
+    async def on_member_remove(self,member):
+        """
+            Function: on_member_remove(member)
+            Description: Handles on_member_remove events, removes a member from assigned group if the member leaves
+                        the server.
+            Inputs:
+               - member: used to add member to the knowledge of the bot
+            Outputs:
+               - groups.csv and name_mapping.csv files are updated to reflect removal of a member
+       """
+        groups = load_groups()
+        student_pool = load_pool()
+
+        name = member.display_name
+        for key in groups.keys():
+            if name.upper() in groups[key]:
+                groups[key].remove(name.upper())
+        print_groups(groups)
+
+        for key in student_pool.keys():
+            if name.upper() == key.upper() or name.upper() == student_pool[key][0].upper():
+                del student_pool[key]
+                break
+        print_pool(student_pool)
+
 def load_groups() -> dict:
     """
      Used to load the groups from the csv file into a dictionary
