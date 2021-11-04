@@ -214,8 +214,8 @@ class Groups(commands.Cog):
     #
     #     print_pool(student_pool)
 
-    @commands.dm_only()
-    @commands.is_owner()
+    # @commands.dm_only()
+    # @commands.is_owner()
     @commands.command(
         name='auto-assign',
         help="use $auto-assign to automatically assign students who are not part of a group into vacant groups",
