@@ -1,27 +1,47 @@
 # Copyright (c) 2021
-# This functionality tracks student activity and rewards students with level ups. Students can track their activity
-# with $levels and see their progress towards the next level. The bot continually listens for user messages and adds
-# it to the user's personal experience/level score which is stored in data/participation/users.json
+"""This functionality tracks student activity and rewards students
+ with level ups. Students can track their activities with $level and see their
+ progress towards the next level. The bot continually listens for user messages
+ and adds it to the user's personal experience/level score"""
 from math import floor
 import discord
 from discord.ext import commands
 import json
+import sys
+import os
 from datetime import datetime
 
-class userRanking(commands.Cog):
 
+class userRanking(commands.Cog):
+    """userRanking ...
+    Holds commands to track user participation
+    Args:
+        self: used to access parameters passed to the class through the constructor
+        bot: discord bot context
+    """
     def __init__(self, client):
+        cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        os.chdir(cur_dir)
+        """initialization for userRanking"""
         self.client = client
 
-    # -----------------------------------------------------------------------------------------------------------------
+    # --------------------------------------------------------------
     #    Function: on_member_join(self, member)
-    #    Description: Sees a user has joined and adds their information to data/participation/users.json
+    #    Description: Sees a user has joined and adds their information
+    #    to data/participation/users.json
     #    Inputs:
-    #    - self: used to access parameters passed to the class through the constructor
+    #    - self: used to access parameters passed to the class through
+    #    the constructor
     #    - member: used to access the values passed through the current context
-    # -----------------------------------------------------------------------------------------------------------------
+    # -------------------------------------------------------------------
     @commands.Cog.listener()
     async def on_member_join(self, member):
+        """on_member_join ...
+        Sees a user has joined and adds their information
+        Args:
+            self: used to access parameters passed to the class through
+            member: used to access the values passed through the current context
+        """
         with open('data/participation/users.json', 'r') as f:
             users = json.load(f)
 
@@ -30,21 +50,29 @@ class userRanking(commands.Cog):
         with open('data/participation/users.json', 'w') as f:
             json.dump(users, f, indent=4)
 
-    # -----------------------------------------------------------------------------------------------------------------
+    # -------------------------------------------------------------------
     #    Function: on_message(self, message)
     #    Description: Sees a user message and updates data/participation/users.json
     #    Inputs:
     #    - self: used to access parameters passed to the class through the constructor
     #    - message: used to access the values passed through the current context
-    # -----------------------------------------------------------------------------------------------------------------
+    # --------------------------------------------------------------------
     @commands.Cog.listener()
     async def on_message(self, message):
+        """on_message ...
+        Sees a user has messaged and adds their information
+        Args:
+            self: used to access parameters passed to the class through
+            message: used to access the values passed through the current context
+        """
         if not message.author.bot:
+            cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            os.chdir(cur_dir)
             with open('data/participation/users.json', 'r') as f:
                 users = json.load(f)
             await self.update_data(users, message.author)
             await self.add_experience(users, message.author)
-            await self.level_up(users, message.author)
+            await self.level_up(message, users)
 
             with open('data/participation/users.json', 'w') as f:
                 json.dump(users, f, indent=4)
@@ -58,17 +86,15 @@ class userRanking(commands.Cog):
     async def add_experience(self, users, user):
         users[str(user.id)]['experience'] += 15
 
-    async def level_up(self, users, user):
+    async def level_up(self, ctx, users):
+        user = ctx.author
         experience = users[str(user.id)]['experience']
         lvl = users[str(user.id)]['level']
         lvl_end = 5 * (lvl ** 2) + (50 * lvl) + 100
-        # print(user)
-        # print(f"Level:{lvl}")
-        # print(f"experience:{experience}")
-        # print(f"lvl_end: {lvl_end} ")
 
         if lvl_end <= experience:
-            channel = self.client.get_channel(900580609540362303)
+            # channel = self.client.get_channel(900580609540362303)
+            channel = discord.utils.get(ctx.guild.channels, name="general")
             await channel.send('{} has levelled up to level {} ! 🙌'.format(user.mention, lvl + 1))
             users[str(user.id)]['level'] = lvl + 1
             users[str(user.id)]['experience'] -= lvl_end
@@ -78,17 +104,25 @@ class userRanking(commands.Cog):
                  dt_time.month + 10000 * dt_time.day + 100 * dt_time.hour + dt_time.minute
         return int(answer)
 
-    # -----------------------------------------------------------------------------------------------------------------
+    # -----------------------------------------------------------------------------
     #    Function: level(self, ctx, user)
-    #    Description: Outputs a student's level/progress which is stored in data/participation/users.json
+    #    Description: Outputs a student's level/progress which is
+    #    stored in data/participation/users.json
     #    Inputs:
     #    - self: used to access parameters passed to the class through the constructor
     #    - ctx: used to access the values passed through the current context
     #    - user: the user that created the command
     #    Outputs: returns a message with a progress bar on the user's progress
-    # -----------------------------------------------------------------------------------------------------------------
+    # ----------------------------------------------------------------------
     @commands.command()
     async def level(self, ctx, user: discord.Member = None):
+        """level ...
+        presents level information about a user
+        Args:
+            self: used to access parameters passed to the class through
+            ctx: used to access the values passed through the current context
+            user: the discord member
+        """
         with open('data/participation/users.json', 'r') as f:
             users = json.load(f)
 
@@ -103,16 +137,20 @@ class userRanking(commands.Cog):
             exp = int(5 * (lvl ** 2) + (50 * lvl) + 100)  # XP cap
             experience = int(users[str(user.id)]['experience'])
             boxes = floor((experience * 20) / exp)
-
+            val = 5 * (lvl ** 2) + (50 * lvl) + 100
             embed = discord.Embed(Title=f"**{user}'s Rank**",
-                                  Description=f"Experience: {lvl}/{5 * (lvl ** 2) + (50 * lvl) + 100}", color=0x0091ff)
+                                  Description=f"Experience: {lvl}/{exp}", color=0x0091ff)
             embed.set_thumbnail(url=f"{user.avatar_url}")
-            embed.add_field(name=f"**{user}'s Rank**", value="🙌  ", inline=False)
-            embed.add_field(name="Level", value=f"**{users[str(user.id)]['level']}**", inline=True)
-            embed.add_field(name="Experience", value=f"**{str(int(users[str(user.id)]['experience']))} / {exp}**",
+            embed.add_field(name=f"**{user}'s Rank**",
+                            value="🙌  ", inline=False)
+            embed.add_field(name="Level",
+                            value=f"**{users[str(user.id)]['level']}**", inline=True)
+            embed.add_field(name="Experience",
+                            value=f"**{str(int(users[str(user.id)]['experience']))} / {exp}**",
                             inline=True)
             embed.add_field(name="Progress Bar",
-                            value=boxes * ":blue_square:" + (20 - boxes) * ":white_large_square:", inline=False)
+                            value=boxes * ":blue_square:" + (20 - boxes) *
+                                    ":white_large_square:", inline=False)
             embed.set_footer(text="Contribute more to level up!")
             await ctx.send(embed=embed)
 
@@ -128,21 +166,26 @@ class userRanking(commands.Cog):
             boxes = floor((experience * 20) / exp)
 
             embed = discord.Embed(Title=f"**{user}'s Rang**",
-                                  Description=f"Experience: {lvl}/{5 * (lvl ** 2) + (50 * lvl) + 100}", color=0x0091ff)
+                                  Description=f"Experience: {lvl}/"
+                                              f"{5 * (lvl ** 2) + (50 * lvl) + 100}",
+                                  color=0x0091ff)
             embed.set_thumbnail(url=f"{user.avatar_url}")
             embed.add_field(name=f"**{user}'s Rang**", value="🙌  ", inline=False)
-            embed.add_field(name="Level", value=f"**{users[str(user.id)]['level']}**", inline=True)
-            embed.add_field(name="Experience", value=f"**{str(int(users[str(user.id)]['experience']))} / {exp}**",
+            embed.add_field(name="Level",
+                            value=f"**{users[str(user.id)]['level']}**", inline=True)
+            embed.add_field(name="Experience",
+                            value=f"**{str(int(users[str(user.id)]['experience']))} / {exp}**",
                             inline=True)
             embed.add_field(name="Progress Bar",
-                            value=boxes * ":blue_square:" + (20 - boxes) * ":white_large_square:", inline=False)
+                            value=boxes * ":blue_square:" + (20 - boxes) *
+                                  ":white_large_square:", inline=False)
             embed.set_footer(text="Contribute more to level up!")
             await ctx.send(embed=embed)
 
         with open('data/participation/users.json', 'w') as f:
             json.dump(users, f, indent=4)
 
-    # -----------------------------------------------------------------------------------------------------------------
+    # --------------------------------------------------------------
     #    Function: add_database(self, ctx, user)
     #    Description: Add a user to the database in data/participation/users.json
     #    Inputs:
@@ -150,9 +193,16 @@ class userRanking(commands.Cog):
     #    - ctx: used to access the values passed through the current context
     #    - user: the user that needs to be added
     #    Outputs: updates users.json or indicates if user is already in the database
-    # -----------------------------------------------------------------------------------------------------------------
+    # --------------------------------------------------------
     @commands.command()
     async def add_database(self, ctx, user: discord.Member):
+        """add_database ...
+        Adds user to the database
+        Args:
+            self: used to access parameters passed to the class through
+            ctx: used to access the values passed through the current context
+            user: the discord member to be added
+        """
         with open('data/participation/users.json', 'r') as f:
             users = json.load(f)
         if not str(user.id) in users:
@@ -167,8 +217,14 @@ class userRanking(commands.Cog):
         with open('data/participation/users.json', 'w') as f:
             json.dump(users, f, indent=4)
 
+
 # -------------------------------------
 # add the file to the bot's cog system
 # -------------------------------------
 def setup(bot):
+    """setup ...
+    Shows the attendance chart
+    Args:
+        bot: bot context setup
+    """
     bot.add_cog(userRanking(bot))

@@ -9,29 +9,34 @@ from discord.ext import commands
 from quickchart import QuickChart
 import pyshorteners
 
+
 class Charts(commands.Cog):
+    """Charts ...
+    Holds commands to make charts
+    Args:
+        self: used to access parameters passed to the class through the constructor
+        bot: discord bot context
+    """
     def __init__(self, bot):
         self.bot = bot
 
-    # -----------------------------------------------------------------------------------------------------------------
-    #    Function: grades(self, ctx, chart: str, aGrade: int, bGrade: int, cGrade: int, dGrade: int, fGrade: int)
-    #    Description: Creates a grade distribution chart and saves the chart to a json file
-    #    Inputs:
-    #    - self: used to access parameters passed to the class through the constructor
-    #    - ctx: used to access the values passed through the current context
-    #    - chart: the chart type
-    #    - aGrade: the number of students who got an A
-    #    - bGrade: the number of students who got an B
-    #    - cGrade: the number of students who got an C
-    #    - dGrade: the number of students who got an D
-    #    - fGrade: the number of students who got an F
-    #    Output: A link/visual to the chart
-    # -----------------------------------------------------------------------------------------------------------------
     @commands.command(name="grades",
                       help="View grade distribution; FORMAT (7 inputs): chart_type (pie, bar, line), title (1 word),"
                            "number of As, number of Bs, number of Cs, number of Ds, number of Fs")
     @commands.has_permissions(administrator=True)
     async def grades(self, ctx, chart: str, aGrade: int, bGrade: int, cGrade: int, dGrade: int, fGrade: int):
+        """grades ...
+        Creates a grade distribution chart and saves the chart to a json file
+        Args:
+            self: used to access parameters passed to the class through the constructor
+            ctx: used to access the values passed through the current context
+            chart (String): the chart type
+            aGrade (String): the number of students who got an A
+            bGrade (String): the number of students who got an B
+            cGrade (String): the number of students who got an C
+            dGrade (String): the number of students who got an D
+            fGrade (String): the number of students who got an F
+        """
         with open('data/charts/chartstorage.json', 'r') as f:
             storage = json.load(f)
         qc = QuickChart()
@@ -69,20 +74,18 @@ class Charts(commands.Cog):
                 "number of As, number of Bs, number of Cs, number of Ds, number of Fs \n"
                 "\n EXAMPLE: $grades bar 5 4 3 2 1")
 
-    # -----------------------------------------------------------------------------------------------------------------
-    #    Function: attendance(self, ctx, attended: int, absent: int)
-    #    Description: Creates a attendance pie chart and saves the chart to a json file
-    #    Inputs:
-    #    - self: used to access parameters passed to the class through the constructor
-    #    - ctx: used to access the values passed through the current context
-    #    - attended: number of students who attended
-    #    - absent: number of students who were absent
-    #    Output: A link/visual to the chart
-    # -----------------------------------------------------------------------------------------------------------------
     @commands.command(name="attendance",
                       help="View attendance; FORMAT (2 inputs): number of attended, number of absent")
     @commands.has_permissions(administrator=True)
     async def attendance(self, ctx, attended: int, absent: int):
+        """grades ...
+        Creates a attendance pie chart and saves the chart to a json file
+        Args:
+            self: used to access parameters passed to the class through the constructor
+            ctx: used to access the values passed through the current context
+            attended (int): number of students attended
+            absent (int): number of students absent
+        """
         with open('data/charts/chartstorage.json', 'r') as f:
             storage = json.load(f)
         qc = QuickChart()
@@ -126,6 +129,12 @@ class Charts(commands.Cog):
     # -----------------------------------------------------------------------------------------------------------------
     @commands.command()
     async def checkgrade(self, ctx):
+        """checkgrade ...
+        Shows the grades chart
+        Args:
+            self: used to access parameters passed to the class through the constructor
+            ctx: used to access the values passed through the current context
+        """
         with open('data/charts/chartstorage.json', 'r') as f:
             storage = json.load(f)
             if not storage or storage["grades"] == '':
@@ -143,6 +152,12 @@ class Charts(commands.Cog):
     # -----------------------------------------------------------------------------------------------------------------
     @commands.command()
     async def checkattendance(self, ctx):
+        """checkattendance ...
+        Shows the attendance chart
+        Args:
+            self: used to access parameters passed to the class through the constructor
+            ctx: used to access the values passed through the current context
+        """
         with open('data/charts/chartstorage.json', 'r') as f:
             storage = json.load(f)
             if not storage or storage["attendance"] == '':
@@ -161,6 +176,13 @@ class Charts(commands.Cog):
     # -----------------------------------------------------------------------------------------------------------------
     @commands.command()
     async def checkchart(self, ctx, name: str):
+        """checkchart ...
+        Shows the attendance chart
+        Args:
+            self: used to access parameters passed to the class through the constructor
+            ctx: used to access the values passed through the current context
+            name (str): name of the chart being searched
+        """
         with open('data/charts/chartstorage.json', 'r') as f:
             storage = json.load(f)
             if not storage or storage[name] == '':
@@ -192,6 +214,16 @@ class Charts(commands.Cog):
                            "list data as coordinates: (a,1), (b,2), (c,3)")
     @commands.has_permissions(administrator=True)
     async def customchart(self, ctx, title: str, chart: str, datacount: int, *args):
+        """customchart ...
+        Creates a custom chart of any kind and saves the chart to a json file
+        Args:
+            self: used to access parameters passed to the class through the constructor
+            ctx: used to access the values passed through the current context
+            title (str): name of the chart being searched
+            chart (str): the chart type
+            datacount (int): number of data points/categories
+            *args: Custom combination of data categories and numbers for those categories
+        """
 
         if len(args) / 2 != datacount:
             raise IllegalArgumentsError
@@ -244,6 +276,15 @@ class Charts(commands.Cog):
                 "(continue for however many categories there are)\n --- \n"
                 "EX. If # of categories is 5, there should be 5 category names and 5 category numbers")
 
+    # -----------------------------------------------------------------------------------------------------------------
+    #    Function: update_chart(self, storage, name, link)
+    #    Description: Helper method to check if a chart saved else add it to the file
+    #    Inputs:
+    #    - self: used to access parameters passed to the class through the constructor
+    #    - storage: the json file opened
+    #    - name: the name of the chart
+    #    - link: the link access to the chart
+    # -----------------------------------------------------------------------------------------------------------------
     async def update_chart(self, storage, name, link):
         if not str(name) in storage:
             storage[str(name)] = {}
@@ -253,9 +294,19 @@ class Charts(commands.Cog):
 # add the file to the bot's cog system
 # -------------------------------------
 def setup(bot):
+    """setup ...
+    Shows the attendance chart
+    Args:
+        bot: bot context setup
+    """
     bot.add_cog(Charts(bot))
 
 # Custom Error when invalid number of arguments are passed into $customchart
 class IllegalArgumentsError(Exception):
+    """IllegalArgumentsError ...
+        Error for incorrect arguments
+        Args:
+            Exception: The exceptinon being thrown
+        """
     print("customchart arguments invalid")
     pass
