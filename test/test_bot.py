@@ -2,6 +2,7 @@
 import discord
 import os
 import sys
+from Utility.email_utility import EmailUtility
 from datetime import datetime, timedelta
 import discord.ext.test as dpytest
 from dotenv import load_dotenv
@@ -293,4 +294,21 @@ async def test_voting(bot):
         await dpytest.message(content="$vote Project 1")
         assert dpytest.verify().message().contains().content(
             "Could not fine the Group you are in, please contact a TA or join with your group number")
+
+
+# ---------------------------
+# Tests Utility/email_utility
+# ---------------------------
+@pytest.mark.asyncio
+async def test_email_utility(bot):
+    # Test email utility negative cases.
+    # Test email utility by providing just recipient email address.
+    with pytest.raises(Exception):
+        EmailUtility().send_email('noreplyclassmatebot@example.com')
+    # Test email utility by providing just recipient email address and attachment.
+    with pytest.raises(Exception):
+        with open('data/email/emails.json') as file:
+            EmailUtility().send_email('noreplyclassmatebot@example.com', attachment=file.read())
+
+
 

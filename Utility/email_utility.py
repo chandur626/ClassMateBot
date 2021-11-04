@@ -67,4 +67,6 @@ class EmailUtility:
         except Exception as error:
             with open("err.log", "a") as f:
                 f.write(f"Error while sending email : {str(error)}\n")
+            print(error)
+            raise error
 
