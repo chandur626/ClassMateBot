@@ -68,7 +68,6 @@ class Deadline(commands.Cog):
             self.reminders.append({"ID": author.id, "COURSE": coursename, "HOMEWORK": hwcount,
                                    "DUEDATE": str(duedate),
                                    "FUTURE": seconds})
-            print(self.reminders)
             cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
             os.chdir(cur_dir)
             json.dump(self.reminders, open("data/remindme/reminders.json", "w"))
@@ -454,5 +453,5 @@ def setup(bot):
     check_files()
     n = Deadline(bot)
     loop = asyncio.get_event_loop()
-    # loop.create_task(n.delete_old_reminders())
+    loop.create_task(n.delete_old_reminders())
     bot.add_cog(n)
