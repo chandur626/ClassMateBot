@@ -125,8 +125,15 @@ User Ranking
 :open_file_folder: [$add_database command](https://github.com/chandur626/ClassMateBot/blob/main/docs/userRanking/add_database.md)
 
 
-Email Verification
+Email Specification
 
+:open_file_folder: [$add_email_command](https://github.com/chandur626/ClassMateBot/blob/main/docs/EmailSpecification/add_email.md)
+
+:open_file_folder: [$view_email_command](https://github.com/chandur626/ClassMateBot/blob/main/docs/EmailSpecification/view_email.md)
+
+:open_file_folder: [$update_email command](https://github.com/chandur626/ClassMateBot/blob/main/docs/EmailSpecification/update_email.md)
+
+:open_file_folder: [$delete_email_command](https://github.com/chandur626/ClassMateBot/blob/main/docs/EmailSpecification/delete_email.md)
 
 
 Auto-Grouping
