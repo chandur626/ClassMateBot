@@ -48,6 +48,11 @@ You can find the Original Features from Iteration 1 [here](https://github.com/ch
 
 ### 1 - Auto-Grouping Students (Pallavi)
 
+Auto-Grouping command allows TAs and Professors to automatically assign students into groups for project works.
+The Iteration 1 provided join command which can be used by students to join a specific group. Post deadline, If there are any students who have not yet joined any group, then the TA can simply use the auto-grouping command to assign those students into groups having vacant positions.
+A simple example is shown below :
+
+
 ### 2 - Email Functions (Chandrahas) 
 
 ### 3 - Sentiment Analysis (Harini)
