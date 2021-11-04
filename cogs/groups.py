@@ -214,8 +214,8 @@ class Groups(commands.Cog):
     #
     #     print_pool(student_pool)
 
-    @commands.dm_only()
-    @commands.has_permissions(administrator=True)
+    # @commands.dm_only()
+    # @commands.is_owner()
     @commands.command(
         name='auto-assign',
         help="use $auto-assign to automatically assign students who are not part of a group into vacant groups",
@@ -294,6 +294,50 @@ class Groups(commands.Cog):
                 break
         print_pool(student_pool)
 
+    # @commands.dm_only()
+    @commands.command(
+        name='find-group',
+        help="To use the find-group command, do: $find-group <StudentName> \n \
+        ( For example: $find-group Jane Doe )",
+        pass_context=True
+    )
+    async def find_group(self, ctx,*,name : str):
+
+        """
+            Function: find_group(self, ctx,name : str)
+            Description: given a student name, the function returns the group number the students belongs to
+            Inputs:
+                - self: used to access parameters passed to the class through the constructor
+                - ctx: used to access the values passed through the current context
+                - * : to take input of string arguments including spaces
+                - name : name of the student
+            Outputs: returns the group number of the given student name or asks to re-enter the
+                    command  with proper arguments.
+        """
+
+        student_pool = load_pool()
+        match_found = False
+        name = name.upper()
+        for key in student_pool.keys():
+            if name == key.upper() or name == student_pool[key][0].upper():
+                await ctx.send(student_pool[key][1])
+                match_found = True
+                break
+
+        if not match_found:
+            await  ctx.send("Please check the name entered and try again")
+            await ctx.send('To use the find-group command, do: $find-group <StudentName> \n \
+                            ( For example: $find-group Jane Doe )')
+
+    @find_group.error
+    async def find_group_error(self, ctx, error):
+        """
+         this handles errors related to the find-group command
+        """
+        if isinstance(error, commands.MissingRequiredArgument):
+            await ctx.send('To use the find-group command, do: $find-group <StudentName> \n \
+            ( For example: $find-group Jane Doe )')
+
 def load_groups() -> dict:
     """
      Used to load the groups from the csv file into a dictionary
@@ -339,7 +383,10 @@ def load_pool() -> dict:
     os.chdir('server_data')
     with open('name_mapping.csv', mode='r') as infile:
         reader = csv.reader(infile)
-        student_pools = {rows[0].upper(): [rows[1].upper(), rows[2]] for rows in reader}
+        for rows in reader:
+            if rows == []:
+                break
+            student_pools = {rows[0].upper(): [rows[1].upper(), rows[2]]}
 
     return student_pools
 
