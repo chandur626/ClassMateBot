@@ -57,11 +57,11 @@ Auto-Grouping command allows TAs and Professors to automatically assign students
 ### 2 - Email Functionality
 Students can now configure their email address to receive attachments and various notifications such as reminders. Students can create or update the configured email address using the below-mentioned commands in the Version 2 commands section.
 
-![](../../Downloads/Email_Address.gif)
+![](https://github.com/chandur626/ClassMateBot/blob/main/data/media/Email_Address.gif)
 
 Students can also get the attachments mailed to their configured email address by reacting with white_heavy_mark to the attachment message.
 
-![](../../Downloads/Email_Attachment.gif)
+![](https://github.com/chandur626/ClassMateBot/blob/main/data/media/Email_Attachment.gif)
 
 ### 3 - Sentiment Analysis (Harini)
 
