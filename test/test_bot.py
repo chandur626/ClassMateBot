@@ -80,12 +80,15 @@ async def test_groupError(bot):
 
 # ------------------------------------
 # Tests cogs/groups.py autogrouping
-# ------------------------------------
+# # ------------------------------------
 @pytest.mark.asyncio
-async def test_automatic_grouping(bot):
-    await dpytest.message("$auto-assign")
-    assert dpytest.verify().message().contains().content("Successfully Assigned Students into Groups")
 
+async def test_automatic_grouping(bot):
+    # Test verification, should raise exception since channel isn't private
+    with pytest.raises(Exception):
+        assert dpytest.verify().message().contains().content("No modifications made. Every Student is part of a Group")
+
+    # Can only test this currently since dpytest doesn't allow us to test DM'ing
 
 # -----------------------
 # Tests cogs/deadline.py

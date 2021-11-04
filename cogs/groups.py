@@ -358,7 +358,10 @@ def load_pool() -> dict:
     os.chdir('server_data')
     with open('name_mapping.csv', mode='r') as infile:
         reader = csv.reader(infile)
-        student_pools = {rows[0].upper(): [rows[1].upper(), rows[2]] for rows in reader}
+        for rows in reader:
+            if rows == []:
+                break
+            student_pools = {rows[0].upper(): [rows[1].upper(), rows[2]]}
 
     return student_pools
 
