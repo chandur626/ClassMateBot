@@ -6,6 +6,7 @@ import os
 import discord
 from discord import Intents
 from dotenv import load_dotenv
+from cogs.deadline import email_remainders
 from discord.ext.commands import Bot, has_permissions, CheckFailure
 
 # ----------------------------------------------------------------------------------------------
@@ -57,6 +58,7 @@ async def on_ready():
             type=discord.ActivityType.watching, name="Over This Server"
         )
     )
+    email_remainders.start()
     print("READY!")
 
 

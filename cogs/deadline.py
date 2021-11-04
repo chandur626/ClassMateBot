@@ -4,7 +4,8 @@
 # A user can set up a reminder, check what is due this week or what is due today. He/She can also check all the due homeworks based on hte coursename.
 # A user can also update or delete a reminder if needed.
 import discord
-from discord.ext import commands
+from discord.ext import commands, tasks
+from Utility.email_utility import EmailUtility
 import json
 import os
 import sys
@@ -353,6 +354,27 @@ class Deadline(commands.Cog):
                 json.dump(self.reminders, open("data/remindme/reminders.json", "w"))
             await asyncio.sleep(5)
 
+
+@tasks.loop(seconds=10)
+async def email_remainders():
+    cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    os.chdir(cur_dir)
+    with open('data/remindme/reminders.json', 'r') as rfile, open('data/email/emails.json',
+                                                                  'r') as efile:
+        reminders = json.load(rfile)
+        email_list = json.load(efile)
+        for reminder in reminders:
+            due_date = datetime.strptime(reminder["DUEDATE"], '%Y-%m-%d %H:%M:%S')
+            remaining_time = due_date - datetime.today()
+            if remaining_time.total_seconds() <= 86400:
+                if str(reminder['ID']) in email_list:
+                    EmailUtility().send_email(email_list[str(reminder['ID'])],
+                                              subject='CLASSMATE BOT REMINDER',
+                                              body="This email is to let you know that "
+                                                   "{} is due at {}".format(
+                                                  reminder["HOMEWORK"], reminder["DUEDATE"]))
+                else:
+                    continue
 
 # -----------------------------------------------------------------------------
 # checks if the folder that is going to hold json exists else creates a new one
