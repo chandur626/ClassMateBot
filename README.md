@@ -71,6 +71,10 @@ Admins (In this case, TAs and Professors) can quickly make graphcs and charts di
 
 ### 5 - Link Collection (Sandesh)
 
+Another problem that the students face is that they cannot save all the messages which contain important URLs that are helpful to them so we have built a user command where a student can retrieve all the links which are shared in the group with one click. This command lets users access all messages which contain URLs. The messages Containing URL are automatically get appended in a file and the file is attached when the `$send_links` command is input.
+
+<p align="left"><img width=75% src="https://github.com/chandur626/ClassMateBot/blob/main/data/media/Links.gif"></p>
+
 ### 6 - User Participation Ranking
 
 Users are all given a participation rank the moment they join a discord community with the ClassMateBot. As the user participates in the server, such as replying to the professor, answering questions, helping other students, etc., they increase their participation score. Courses within the Humanities and Social Sciences rely on student participation. Professors can use this feature to check which students are participating more and factor that into a class participation grade. Users can also check which level/rank they hold. Admins also have the ability to add/remove points from users.
