@@ -93,7 +93,7 @@ class userRanking(commands.Cog):
 
         if lvl_end <= experience:
             channel = discord.utils.get(ctx.guild.channels, name="general")
-            await channel.send('f{user.mention} has levelled up to level {level + 1} ! 🙌')
+            await channel.send('{} has levelled up to level {} ! 🙌'.format(user.mention, lvl + 1))
             # .format(user.mention, lvl + 1))
             users[str(user.id)]['level'] = lvl + 1
             users[str(user.id)]['experience'] -= lvl_end
@@ -122,7 +122,7 @@ class userRanking(commands.Cog):
         """
         with open('data/participation/users.json', 'r', encoding='utf-8') as file:
             users = json.load(file)
-
+        await ctx.send('Contribute more to level up!')
         if user is None:
             if not str(ctx.author.id) in users:
                 users[str(ctx.author.id)] = {}
@@ -147,7 +147,7 @@ class userRanking(commands.Cog):
             embed.add_field(name="Progress Bar",
                             value=boxes * ":blue_square:" + (20 - boxes) *
                                     ":white_large_square:", inline=False)
-            embed.set_footer(text="Contribute more to level up!")
+            embed.set_footer(text=f"next level: {lvl + 1}")
             await ctx.send(embed=embed)
 
         else:
@@ -175,7 +175,7 @@ class userRanking(commands.Cog):
             embed.add_field(name="Progress Bar",
                             value=boxes * ":blue_square:" + (20 - boxes) *
                                   ":white_large_square:", inline=False)
-            embed.set_footer(text="Contribute more to level up!")
+            embed.set_footer(text=f"next level: {lvl + 1}")
             await ctx.send(embed=embed)
 
         with open('data/participation/users.json', 'w', encoding='utf-8') as file:
@@ -203,7 +203,6 @@ class userRanking(commands.Cog):
 
         with open('data/participation/users.json', 'w', encoding='utf-8') as file:
             json.dump(users, file, indent=4)
-
 
 def setup(bot):
     """
