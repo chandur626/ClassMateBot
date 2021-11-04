@@ -20,3 +20,4 @@ $add_email email_address
 $add_email noreplyclassmatebot@example.com
 ```
 Successful execution of this command will configure the email address.
+<p align="left"><img width=75% src="https://github.com/chandur626/ClassMateBot/blob/main/data/media/Email_Address.gif"></p>
