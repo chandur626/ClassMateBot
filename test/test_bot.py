@@ -88,6 +88,19 @@ async def test_automatic_grouping(bot):
         assert dpytest.verify().message().contains().content("No modifications made. Every Student is part of a Group")
 
 
+# ------------------------------------
+#Tests cogs/groups.py find-group
+# # ------------------------------------
+@pytest.mark.asyncio
+#
+async def test_find_group(bot):
+        # test with invalid input
+        with pytest.raises(Exception):
+            await  dpytest.message("$find-group UnknownUser")
+            assert dpytest.verify().message().contains().content("Please check the name entered and try again")
+            assert dpytest.verify().message().contains().content('To use the find-group command, do: $find-group <StudentName> \n \
+                ( For example: $find-group Jane Doe )')
+
 # -----------------------
 # Tests cogs/deadline.py
 # -----------------------

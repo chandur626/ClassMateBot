@@ -268,7 +268,7 @@ class Groups(commands.Cog):
             await ctx.send("No modifications made. Every Student is part of a Group")
 
 
-    @commands.dm_only()
+    # @commands.dm_only()
     @commands.command(
         name='find-group',
         help="To use the find-group command, do: $find-group <StudentName> \n \
