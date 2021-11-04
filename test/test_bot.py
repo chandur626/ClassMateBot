@@ -4,6 +4,8 @@ import os
 import sys
 from datetime import datetime, timedelta
 import discord.ext.test as dpytest
+from cogs.deadline import email_remainders
+from cogs.deadline import Deadline
 from dotenv import load_dotenv
 import pytest
 
@@ -280,6 +282,25 @@ async def test_verifyError(bot):
     # Can only test this currently since dpytest doesn't allow us to test DM'ing
 
 
+# ------------------------------------
+# Tests email reminders in deadline.py
+# ------------------------------------
+@pytest.mark.asyncio
+async def test_email_reminder(bot):
+    # Test email reminders function in deadline
+    # Adds the reminder and tests
+    with pytest.raises(Exception):
+        await dpytest.message(content="$add_email noreplytest@classmatebot.com")
+        assert dpytest.verify().message().contains().content(
+            "Email address has been configured successfully")
+        now = datetime.now() + timedelta(hours=1)
+        dt_string = now.strftime("%b %d %Y %H:%M")
+        await dpytest.message(f'$addhw CSC600 HW0 {dt_string}')
+        assert dpytest.verify().message().contains().content(
+            "A date has been added for: CSC600 homework named: HW0")
+        email_remainders()
+
+
 # We cannot currently test newComer.py in a meaningful way due to not having a way to DM the test bot directly.
 
 
@@ -293,4 +314,3 @@ async def test_voting(bot):
         await dpytest.message(content="$vote Project 1")
         assert dpytest.verify().message().contains().content(
             "Could not fine the Group you are in, please contact a TA or join with your group number")
-
