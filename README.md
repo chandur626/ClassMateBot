@@ -48,7 +48,7 @@ You can find the Original Features from Iteration 1 [here](https://github.com/ch
 
 ### 1 - Auto-Grouping Students
 
-Auto-Grouping command allows TAs and Professors to automatically assign students into groups for project works. The Iteration 1 provided join command which can be used by students to join a specific group. Post deadline, If any students have not yet joined a group, then the TA can simply use the auto-grouping command to assign those students into groups having vacant positions. Groups with maximum vacant positions are given the first priority. A simple example is shown below :
+Auto-Grouping command allows TAs and Professors to automatically assign students into groups for project works. The Iteration 1 provided join command which can be used by students to join a specific group. Post deadline, If students have not yet joined a group, then the TA can simply use the auto-grouping command to assign those students into groups having vacant positions. Groups with maximum vacant positions are given the first priority. A simple example is shown below :
 
 
 ![$auto-assign](https://github.com/chandur626/ClassMateBot/blob/main/data/media/Auto-grouping.gif)
