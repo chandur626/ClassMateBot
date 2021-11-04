@@ -25,15 +25,6 @@ class userRanking(commands.Cog):
         """initialization for userRanking"""
         self.client = client
 
-    # --------------------------------------------------------------
-    #    Function: on_member_join(self, member)
-    #    Description: Sees a user has joined and adds their information
-    #    to data/participation/users.json
-    #    Inputs:
-    #    - self: used to access parameters passed to the class through
-    #    the constructor
-    #    - member: used to access the values passed through the current context
-    # -------------------------------------------------------------------
     @commands.Cog.listener()
     async def on_member_join(self, member):
         """on_member_join ...
@@ -50,13 +41,6 @@ class userRanking(commands.Cog):
         with open('data/participation/users.json', 'w') as f:
             json.dump(users, f, indent=4)
 
-    # -------------------------------------------------------------------
-    #    Function: on_message(self, message)
-    #    Description: Sees a user message and updates data/participation/users.json
-    #    Inputs:
-    #    - self: used to access parameters passed to the class through the constructor
-    #    - message: used to access the values passed through the current context
-    # --------------------------------------------------------------------
     @commands.Cog.listener()
     async def on_message(self, message):
         """on_message ...
@@ -104,16 +88,6 @@ class userRanking(commands.Cog):
                  dt_time.month + 10000 * dt_time.day + 100 * dt_time.hour + dt_time.minute
         return int(answer)
 
-    # -----------------------------------------------------------------------------
-    #    Function: level(self, ctx, user)
-    #    Description: Outputs a student's level/progress which is
-    #    stored in data/participation/users.json
-    #    Inputs:
-    #    - self: used to access parameters passed to the class through the constructor
-    #    - ctx: used to access the values passed through the current context
-    #    - user: the user that created the command
-    #    Outputs: returns a message with a progress bar on the user's progress
-    # ----------------------------------------------------------------------
     @commands.command()
     async def level(self, ctx, user: discord.Member = None):
         """level ...
@@ -185,15 +159,6 @@ class userRanking(commands.Cog):
         with open('data/participation/users.json', 'w') as f:
             json.dump(users, f, indent=4)
 
-    # --------------------------------------------------------------
-    #    Function: add_database(self, ctx, user)
-    #    Description: Add a user to the database in data/participation/users.json
-    #    Inputs:
-    #    - self: used to access parameters passed to the class through the constructor
-    #    - ctx: used to access the values passed through the current context
-    #    - user: the user that needs to be added
-    #    Outputs: updates users.json or indicates if user is already in the database
-    # --------------------------------------------------------
     @commands.command()
     async def add_database(self, ctx, user: discord.Member):
         """add_database ...
@@ -218,12 +183,10 @@ class userRanking(commands.Cog):
             json.dump(users, f, indent=4)
 
 
-# -------------------------------------
-# add the file to the bot's cog system
-# -------------------------------------
+
 def setup(bot):
     """setup ...
-    Shows the attendance chart
+    Add the file to the bot's cog system
     Args:
         bot: bot context setup
     """
