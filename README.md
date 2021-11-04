@@ -3,10 +3,9 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 ![Python](https://img.shields.io/badge/python-v3.6+-yellow.svg)
 [![License](https://img.shields.io/badge/license-MIT-orange.svg)](https://opensource.org/licenses/MIT)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5539956.svg)](https://doi.org/10.5281/zenodo.5539956)
-![Build Status](https://github.com/War-Keeper/ClassMateBot/actions/workflows/main.yml/badge.svg)
-[![codecov](https://codecov.io/gh/War-Keeper/ClassMateBot/branch/main/graph/badge.svg)](https://codecov.io/gh/War-Keeper/ClassMateBot)
-
+[![DOI](https://zenodo.org/badge/418217645.svg)](https://zenodo.org/badge/latestdoi/418217645)
+[![Python application](https://github.com/chandur626/ClassMateBot/actions/workflows/main.yml/badge.svg)](https://github.com/chandur626/ClassMateBot/actions/workflows/main.yml)
+[![codecov](https://codecov.io/gh/chandur626/ClassMateBot/branch/main/graph/badge.svg?token=2SKMHUAZV8)](https://codecov.io/gh/chandur626/ClassMateBot)
 <p align="center">
   <a href="#dart-basic-overview">Basic Overview</a>
   ::
@@ -54,9 +53,22 @@ Auto-Grouping command allows TAs and Professors to automatically assign students
 ![$auto-assign](https://github.com/chandur626/ClassMateBot/blob/main/data/media/Auto-grouping.gif)
 
 
-### 2 - Email Functions (Chandrahas) 
+### 2 - Email Functionality
+Students can now configure their email address to receive attachments and various notifications such as reminders. Students can create or update the configured email address using the below-mentioned commands in the Version 2 commands section.
 
-### 3 - Sentiment Analysis (Harini)
+<p align="left"><img width=75% src="https://github.com/chandur626/ClassMateBot/blob/main/data/media/Email_Address.gif"></p>
+
+Students can also get the attachments mailed to their configured email address by reacting with white_heavy_mark to the attachment message.
+
+<p align="left"><img width=75% src="https://github.com/chandur626/ClassMateBot/blob/main/data/media/Email_Attachment.gif"></p>
+
+### 3 - Sentiment Analysis 
+Students and professors can check the sentiment and the polarity score of their message using this functionality. It analyses the given message and gives how negative or positive a message is. 
+Stundents can analyze the sentiment of their message using the below-mentioned commands.
+
+<p align="left"><img width=75% src="https://github.com/War-Keeper/ClassMateBot/blob/main/data/media/SentimentAnalysis.gif"></p>
+
+
 
 ### 4 - Data Visualization
 
@@ -118,8 +130,15 @@ User Ranking
 :open_file_folder: [$add_database command](https://github.com/chandur626/ClassMateBot/blob/main/docs/userRanking/add_database.md)
 
 
-Email Verification
+Email Specification
 
+:open_file_folder: [$add_email_command](https://github.com/chandur626/ClassMateBot/blob/main/docs/EmailSpecification/add_email.md)
+
+:open_file_folder: [$view_email_command](https://github.com/chandur626/ClassMateBot/blob/main/docs/EmailSpecification/view_email.md)
+
+:open_file_folder: [$update_email command](https://github.com/chandur626/ClassMateBot/blob/main/docs/EmailSpecification/update_email.md)
+
+:open_file_folder: [$delete_email_command](https://github.com/chandur626/ClassMateBot/blob/main/docs/EmailSpecification/delete_email.md)
 
 
 Auto-Grouping
