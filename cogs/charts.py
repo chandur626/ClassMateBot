@@ -119,14 +119,6 @@ class Charts(commands.Cog):
                 "FORMAT: $attendance number of attended, number of absent "
                 "\n EXAMPLE: $attendance 150 50")
 
-    # -----------------------------------------------------------------------------------------------------------------
-    #    Function: checkgrade(self, ctx)
-    #    Description: shows the grades chart
-    #    Inputs:
-    #    - self: used to access parameters passed to the class through the constructor
-    #    - ctx: used to access the values passed through the current context
-    #    Output: A link/visual to the chart
-    # -----------------------------------------------------------------------------------------------------------------
     @commands.command()
     async def checkgrade(self, ctx):
         """checkgrade ...
@@ -142,14 +134,6 @@ class Charts(commands.Cog):
             else:
                 await ctx.send(f" View grade distribution: {storage['grades']['URL']}")
 
-    # -----------------------------------------------------------------------------------------------------------------
-    #    Function: checkattendance(self, ctx)
-    #    Description: shows the attendance chart
-    #    Inputs:
-    #    - self: used to access parameters passed to the class through the constructor
-    #    - ctx: used to access the values passed through the current context
-    #    Output: A link/visual to the chart
-    # -----------------------------------------------------------------------------------------------------------------
     @commands.command()
     async def checkattendance(self, ctx):
         """checkattendance ...
@@ -165,15 +149,6 @@ class Charts(commands.Cog):
             else:
                 await ctx.send(f" View attendance: {storage['attendance']['URL']}")
 
-    # -----------------------------------------------------------------------------------------------------------------
-    #    Function: checkchart(self, ctx, name: str)
-    #    Description: searches and shows the chart specified by the name
-    #    Inputs:
-    #    - self: used to access parameters passed to the class through the constructor
-    #    - ctx: used to access the values passed through the current context
-    #    - name: name of the chart to find in the json file
-    #    Output: A link/visual to the chart
-    # -----------------------------------------------------------------------------------------------------------------
     @commands.command()
     async def checkchart(self, ctx, name: str):
         """checkchart ...
@@ -197,18 +172,6 @@ class Charts(commands.Cog):
                 "FORMAT: \n --- \n$checkchart name (name of the chart) "
                 "\n EXAMPLE: $checkchart attendance")
 
-    # -----------------------------------------------------------------------------------------------------------------
-    #    Function: customchart(self, ctx, title: str, chart: str, datacount: int, *args)
-    #    Description: Creates a custom chart of any kind and saves the chart to a json file
-    #    Inputs:
-    #    - self: used to access parameters passed to the class through the constructor
-    #    - ctx: used to access the values passed through the current context
-    #    - title: name of the chart
-    #    - chart: the chart type
-    #    - datacount: number of data points/categories
-    #    - *args: Custom combination of data categories and numbers for those categories.
-    #    Output: A link/visual to the chart
-    # -----------------------------------------------------------------------------------------------------------------
     @commands.command(name="customchart",
                       help="View grade distribution; FORMAT (many): chart_type (pie, bar, line) title (1 word)"
                            "list data as coordinates: (a,1), (b,2), (c,3)")
@@ -275,36 +238,23 @@ class Charts(commands.Cog):
                 "number for Category 1, number for Category 2, number for Category N..."
                 "(continue for however many categories there are)\n --- \n"
                 "EX. If # of categories is 5, there should be 5 category names and 5 category numbers")
-
-    # -----------------------------------------------------------------------------------------------------------------
-    #    Function: update_chart(self, storage, name, link)
-    #    Description: Helper method to check if a chart saved else add it to the file
-    #    Inputs:
-    #    - self: used to access parameters passed to the class through the constructor
-    #    - storage: the json file opened
-    #    - name: the name of the chart
-    #    - link: the link access to the chart
-    # -----------------------------------------------------------------------------------------------------------------
+    
     async def update_chart(self, storage, name, link):
         if not str(name) in storage:
             storage[str(name)] = {}
         storage[str(name)]['URL'] = link
 
-# -------------------------------------
-# add the file to the bot's cog system
-# -------------------------------------
 def setup(bot):
     """setup ...
-    Shows the attendance chart
+    Adds file to bot's cog system
     Args:
         bot: bot context setup
     """
     bot.add_cog(Charts(bot))
 
-# Custom Error when invalid number of arguments are passed into $customchart
 class IllegalArgumentsError(Exception):
     """IllegalArgumentsError ...
-        Error for incorrect arguments
+        Error for incorrect arguments passed into $customchart
         Args:
             Exception: The exceptinon being thrown
         """
