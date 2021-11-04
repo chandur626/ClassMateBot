@@ -274,7 +274,7 @@ async def test_pinError(bot):
 @pytest.mark.asyncio
 async def test_links(bot):
     await dpytest.message(content="$send_links")
-    assert dpytest.verify().message().content("The below list of messages contains URLs")
+    assert dpytest.verify().message().contains().content("The below list of messages contains URLs")
 
 # --------------------
 # Tests cogs/newComer
