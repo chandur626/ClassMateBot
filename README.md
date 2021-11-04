@@ -32,7 +32,7 @@ https://user-images.githubusercontent.com/60410421/140225894-5da3c56e-829f-4407-
 
 This project helps to improve the life of students, TAs and teachers by automating many mundane tasks which are sometimes done manually. ClassMateBot is a discord bot made in Python and could be used for any discord channel. 
 
-In Iteration 2, we added 5 main quality-of-life improvements to be more useful to admins (Professor and TA) and students alike.
+In Iteration 2, we added 6 main quality-of-life improvements to be more useful to admins (Professor and TA) and students alike.
 
 ---
 
@@ -58,17 +58,15 @@ Auto-Grouping command allows TAs and Professors to automatically assign students
 
 ### 4 - Data Visualization
 
-<p align="left"><img width=75% src="https://user-images.githubusercontent.com/60410421/139969198-dcd79af8-eb59-4fa7-934b-aca7023574a0.gif"></p>
-
 Admins (In this case, TAs and Professors) can quickly make graphcs and charts directly in discord to share with students/users. Admins can use this feature to share grade distributions, lecture participation/attendance, or other course statistics. Pre-existing graph commands (such as grades or attendance) were made for ease-of-use so there are less command arguments for the admin to type. If the admin requires a custom chart, a command exists to do just that where admins can specify all data labels and information. All charts are named and stored into a json file when they are created. Students have acess to a command that allows them to view previously presented charts. 
+<p align="left"><img width=75% src="https://user-images.githubusercontent.com/60410421/139969198-dcd79af8-eb59-4fa7-934b-aca7023574a0.gif"></p>
 
 ### 5 - Link Collection (Sandesh)
 
 ### 6 - User Participation Ranking
 
-<p align="left"><img width=75% src="https://user-images.githubusercontent.com/60410421/139969309-90b590b4-fe72-45ca-9956-b65bbf6db7b9.gif"></p>
-
 Users are all given a participation rank the moment they join a discord community with the ClassMateBot. As the user participates in the server, such as replying to the professor, answering questions, helping other students, etc., they increase their participation score. Courses within the Humanities and Social Sciences rely on student participation. Professors can use this feature to check which students are participating more and factor that into a class participation grade. Users can also check which level/rank they hold. Admins also have the ability to add/remove points from users.
+<p align="left"><img width=75% src="https://user-images.githubusercontent.com/60410421/139969309-90b590b4-fe72-45ca-9956-b65bbf6db7b9.gif"></p>
 
 ---
 
@@ -98,24 +96,24 @@ python3 bot.py
 ## Version 2 Commands
 Data Visualization
 
-:open_file_folder: [$grades command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/Verification/verify.md)
+:open_file_folder: [$grades command](https://github.com/chandur626/ClassMateBot/blob/main/docs/charts/grades.md)
 
-:open_file_folder: [$attendance command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/Verification/verify.md)
+:open_file_folder: [$attendance command](https://github.com/chandur626/ClassMateBot/blob/main/docs/charts/attendance.md)
 
-:open_file_folder: [$customchart command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/Verification/verify.md)
+:open_file_folder: [$customchart command](https://github.com/chandur626/ClassMateBot/blob/main/docs/charts/customchart.md)
 
-:open_file_folder: [$checkgrade command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/Verification/verify.md)
+:open_file_folder: [$checkgrade command](https://github.com/chandur626/ClassMateBot/blob/main/docs/charts/checkgrade.md)
 
-:open_file_folder: [$checkattendance command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/Verification/verify.md)
+:open_file_folder: [$checkattendance command](https://github.com/chandur626/ClassMateBot/blob/main/docs/charts/checkattendance.md)
 
-:open_file_folder: [$checkchart command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/Verification/verify.md)
+:open_file_folder: [$checkchart command](https://github.com/chandur626/ClassMateBot/blob/main/docs/charts/checkchart.md)
 
 
 User Ranking
 
-:open_file_folder: [$levels command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/Verification/verify.md)
+:open_file_folder: [$levels command](https://github.com/chandur626/ClassMateBot/blob/main/docs/userRanking/level.md)
 
-:open_file_folder: [$add_database command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/Verification/verify.md)
+:open_file_folder: [$add_database command](https://github.com/chandur626/ClassMateBot/blob/main/docs/userRanking/add_database.md)
 
 
 Email Verification
@@ -185,18 +183,18 @@ For the groups.py file
 ---
 
 ## :earth_americas: Future Scope
-[Project 2](https://github.com/War-Keeper/ClassMateBot/projects/2) and [Project 3](https://github.com/War-Keeper/ClassMateBot/projects/3) user stories and TODO tasks are located in the Projects tab. 
+[Project 3](https://github.com/chandur626/ClassMateBot/projects/1) TODO tasks are located in the Projects tab. 
 
 ---
 
 ## :pencil2: Contributors
 
-<table>
-  <tr>
-    <td align="center"><a href="https://github.com/War-Keeper"><img src="https://avatars.githubusercontent.com/u/87688584?v=4" width="75px;" alt=""/><br /><sub><b>Chaitanya Patel</b></sub></a></td>
-    <td align="center"><a href="https://github.com/wevanbrown"><img src="https://avatars.githubusercontent.com/u/89553353?v=4" width="75px;" alt=""/><br /><sub><b>Evan Brown</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/kunwarvidhan"><img src="https://avatars.githubusercontent.com/u/51852048?v=4" width="75px;" alt=""/><br /><sub><b>Kunwar Vidhan</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/sunil1511"><img src="https://avatars.githubusercontent.com/u/43478410?v=4" width="75px;" alt=""/><br /><sub><b>Sunil Upare</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/salvisumedh2396"><img src="https://avatars.githubusercontent.com/u/72020618?s=96&v=4" width="75px;" alt=""/><br /><sub><b>Sumedh Salvi</b></sub></a><br /></td>
-  </tr>
-</table>
+[Chandrahas Reddy Mandapati](https://github.com/chandur626)
+
+[Sri Pallavi Damuluri](https://github.com/SriPallaviDamuluri)
+
+[Niraj Lavani](https://github.com/nirajlavani)
+
+[Harini Bharata](https://github.com/HariniBharata)
+
+[Sandesh Aladhalli Shivarudre Gowda](https://github.com/05sandesh)
