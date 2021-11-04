@@ -5,6 +5,7 @@ import sys
 from datetime import datetime, timedelta
 import discord.ext.test as dpytest
 from cogs.deadline import email_remainders
+from cogs.deadline import Deadline
 from dotenv import load_dotenv
 import pytest
 
@@ -289,6 +290,9 @@ async def test_email_reminder(bot):
     # Test email reminders function in deadline
     # Adds the reminder and tests
     with pytest.raises(Exception):
+        await dpytest.message(content="$add_email noreplytest@classmatebot.com")
+        assert dpytest.verify().message().contains().content(
+            "Email address has been configured successfully")
         now = datetime.now() + timedelta(hours=1)
         dt_string = now.strftime("%b %d %Y %H:%M")
         await dpytest.message(f'$addhw CSC600 HW0 {dt_string}')
