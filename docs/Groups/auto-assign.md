@@ -20,4 +20,4 @@ $auto-assign
 Successful execution of this command will display the names of the students and the groups they are assigned to along with a success message.
 If all students are already part of some group, a message is displayed notifying that they weren’t any modifications made.
 
-![$auto-assign](https://github.com/chandur626/ClassMateBot/blob/main/data/media/member-remove.gif)
+![$auto-assign](https://github.com/chandur626/ClassMateBot/blob/main/data/media/Auto-grouping.gif)
