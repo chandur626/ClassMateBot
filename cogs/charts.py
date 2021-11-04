@@ -1,9 +1,9 @@
-# Copyright (c) 2021
-# This functionality allows admins to create graphs/charts for various reasons based on admin necessity. The main
-# function is creating a custom graph all within 1 command. Shortcut commands allow admins to quickly make charts
-# like a chart for grades or a chart for attendance ($grades, $attendance, respectfully). Users can also access
-# previously shown charts and graphs made by admins
-
+"""
+This functionality creates charts for the admin to quickly present to the rest
+of the server. Simple charts like grades and attendance are made for quick access
+while custom chart command is used to make any kind of chart. Students can
+recall the chart presented by admins at any time by providing a name.
+"""
 import json
 from discord.ext import commands
 from quickchart import QuickChart
@@ -11,39 +11,38 @@ import pyshorteners
 
 
 class Charts(commands.Cog):
-    """Charts ...
-    Holds commands to make charts
-    Args:
-        self: used to access parameters passed to the class through the constructor
-        bot: discord bot context
-    """
+    """Class provides several methods to manage charting."""
     def __init__(self, bot):
         self.bot = bot
 
     @commands.command(name="grades",
-                      help="View grade distribution; FORMAT (7 inputs): chart_type (pie, bar, line), title (1 word),"
-                           "number of As, number of Bs, number of Cs, number of Ds, number of Fs")
+                      help="View grade distribution; FORMAT (7 inputs): "
+                           "chart_type (pie, bar, line), title (1 word),"
+                           "number of As, number of Bs, number of Cs, "
+                           "number of Ds, number of Fs")
     @commands.has_permissions(administrator=True)
-    async def grades(self, ctx, chart: str, aGrade: int, bGrade: int, cGrade: int, dGrade: int, fGrade: int):
-        """grades ...
-        Creates a grade distribution chart and saves the chart to a json file
-        Args:
-            self: used to access parameters passed to the class through the constructor
-            ctx: used to access the values passed through the current context
-            chart (String): the chart type
-            aGrade (String): the number of students who got an A
-            bGrade (String): the number of students who got an B
-            cGrade (String): the number of students who got an C
-            dGrade (String): the number of students who got an D
-            fGrade (String): the number of students who got an F
+    async def grades(self, ctx, chart: str,
+                     a_grade: int, b_grade: int, c_grade: int, d_grade: int, f_grade: int):
         """
-        with open('data/charts/chartstorage.json', 'r') as f:
-            storage = json.load(f)
-        qc = QuickChart()
-        qc.width = 500
-        qc.height = 300
-        qc.device_pixel_ratio = 2.0
-        qc.config = {
+            Creates grades chart with given specs
+            Parameters:
+                ctx: used to access the values passed through the current context.
+                chart: chart type
+                a_grade: the number of students with an A
+                b_grade: the number of students with an B
+                c_grade: the number of students with an C
+                d_grade: the number of students with an D
+                f_grade: the number of students with an F
+            Returns:
+                returns a graph in the chat box
+        """
+        with open('data/charts/chartstorage.json', 'r', encoding='utf-8') as file:
+            storage = json.load(file)
+        quick_chart = QuickChart()
+        quick_chart.width = 500
+        quick_chart.height = 300
+        quick_chart.device_pixel_ratio = 2.0
+        quick_chart.config = {
             "type": "{}".format(chart),
             "data": {
                 "labels": ["A", "B", "C", "D", "F"],
@@ -54,20 +53,26 @@ class Charts(commands.Cog):
                                         'rgb(250, 195, 149)',
                                         'rgb(245, 165, 145)'],
                     "label": "grades",
-                    "data": [aGrade, bGrade, cGrade, dGrade, fGrade]
+                    "data": [a_grade, b_grade, c_grade, d_grade, f_grade]
                 }]
             }
         }
-        link = qc.get_url()
+        link = quick_chart.get_url()
         shortener = pyshorteners.Shortener()
         shortened_link = shortener.tinyurl.short(link)
         await self.update_chart(storage, "grades", shortened_link)
-        with open('data/charts/chartstorage.json', 'w') as f:
-            json.dump(storage, f, indent=4)
+        with open('data/charts/chartstorage.json', 'w', encoding='utf-8') as file:
+            json.dump(storage, file, indent=4)
         await ctx.send(f"{shortened_link}")
 
     @grades.error
     async def grades_error(self, ctx, error):
+        """
+            Finds error if grades format was wrong
+            Parameters:
+                ctx: used to access the values passed through the current context.
+                error: the error being thrown
+        """
         if isinstance(error, commands.MissingRequiredArgument):
             await ctx.send(
                 "FORMAT: \n --- \n$grades chart_type (pie, bar, line), title (1 word), "
@@ -75,24 +80,26 @@ class Charts(commands.Cog):
                 "\n EXAMPLE: $grades bar 5 4 3 2 1")
 
     @commands.command(name="attendance",
-                      help="View attendance; FORMAT (2 inputs): number of attended, number of absent")
+                      help="View attendance; FORMAT (2 inputs):"
+                           " number of attended, number of absent")
     @commands.has_permissions(administrator=True)
     async def attendance(self, ctx, attended: int, absent: int):
-        """grades ...
-        Creates a attendance pie chart and saves the chart to a json file
-        Args:
-            self: used to access parameters passed to the class through the constructor
-            ctx: used to access the values passed through the current context
-            attended (int): number of students attended
-            absent (int): number of students absent
         """
-        with open('data/charts/chartstorage.json', 'r') as f:
-            storage = json.load(f)
-        qc = QuickChart()
-        qc.width = 500
-        qc.height = 300
-        qc.device_pixel_ratio = 2.0
-        qc.config = {
+            Creates attendance chart with given specs
+            Parameters:
+                ctx: used to access the values passed through the current context.
+                attended: students who attended
+                absent: students who were absent
+            Returns:
+                returns a graph in the chat box
+        """
+        with open('data/charts/chartstorage.json', 'r', encoding='utf-8') as file:
+            storage = json.load(file)
+        quick_chart = QuickChart()
+        quick_chart.width = 500
+        quick_chart.height = 300
+        quick_chart.device_pixel_ratio = 2.0
+        quick_chart.config = {
             "type": "pie",
             "data": {
                 "labels": ["Attended", "Absent"],
@@ -104,16 +111,22 @@ class Charts(commands.Cog):
                 }]
             }
         }
-        link = qc.get_url()
+        link = quick_chart.get_url()
         shortener = pyshorteners.Shortener()
         shortened_link = shortener.tinyurl.short(link)
         await self.update_chart(storage, "attendance", shortened_link)
-        with open('data/charts/chartstorage.json', 'w') as f:
-            json.dump(storage, f, indent=4)
+        with open('data/charts/chartstorage.json', 'w', encoding='utf-8') as file:
+            json.dump(storage, file, indent=4)
         await ctx.send(f"{shortened_link}")
 
     @attendance.error
     async def attendance_error(self, ctx, error):
+        """
+            Finds error if attendance format was wrong
+            Parameters:
+                ctx: used to access the values passed through the current context.
+                error: the error being thrown
+        """
         if isinstance(error, commands.MissingRequiredArgument):
             await ctx.send(
                 "FORMAT: $attendance number of attended, number of absent "
@@ -121,142 +134,165 @@ class Charts(commands.Cog):
 
     @commands.command()
     async def checkgrade(self, ctx):
-        """checkgrade ...
-        Shows the grades chart
-        Args:
-            self: used to access parameters passed to the class through the constructor
-            ctx: used to access the values passed through the current context
         """
-        with open('data/charts/chartstorage.json', 'r') as f:
-            storage = json.load(f)
+            Lets students check the grade chart
+            Parameters:
+                ctx: used to access the values passed through the current context.
+            Returns:
+                returns a graph in the chat box if grades chart exists
+        """
+        with open('data/charts/chartstorage.json', 'r', encoding='utf-8') as file:
+            storage = json.load(file)
             if not storage or storage["grades"] == '':
-                await ctx.send(f"No grades posted!")
+                await ctx.send("No grades posted!")
             else:
                 await ctx.send(f" View grade distribution: {storage['grades']['URL']}")
 
     @commands.command()
     async def checkattendance(self, ctx):
-        """checkattendance ...
-        Shows the attendance chart
-        Args:
-            self: used to access parameters passed to the class through the constructor
-            ctx: used to access the values passed through the current context
         """
-        with open('data/charts/chartstorage.json', 'r') as f:
-            storage = json.load(f)
+            Lets students check the attendance chart
+            Parameters:
+                ctx: used to access the values passed through the current context.
+            Returns:
+                returns a graph in the chat box if attendance chart exists
+        """
+        with open('data/charts/chartstorage.json', 'r', encoding='utf-8') as file:
+            storage = json.load(file)
             if not storage or storage["attendance"] == '':
-                await ctx.send(f"No attendance chart posted!")
+                await ctx.send("No attendance chart posted!")
             else:
                 await ctx.send(f" View attendance: {storage['attendance']['URL']}")
 
     @commands.command()
     async def checkchart(self, ctx, name: str):
-        """checkchart ...
-        Shows the attendance chart
-        Args:
-            self: used to access parameters passed to the class through the constructor
-            ctx: used to access the values passed through the current context
-            name (str): name of the chart being searched
         """
-        with open('data/charts/chartstorage.json', 'r') as f:
-            storage = json.load(f)
+            Lets students check the a custom chart
+            Parameters:
+                ctx: used to access the values passed through the current context.
+                name: the name of the chart they are looking for
+            Returns:
+                returns the custom chart in the chat box if it exists
+        """
+        with open('data/charts/chartstorage.json', 'r', encoding='utf-8') as file:
+            storage = json.load(file)
             if not storage or storage[name] == '':
-                await ctx.send(f"No chart with that name!")
+                await ctx.send("No chart with that name!")
             else:
                 await ctx.send(f"Your requested chart: {storage[name]['URL']}")
 
     @checkchart.error
     async def checkchart_error(self, ctx, error):
+        """
+            Finds error if check chart format was wrong
+            Parameters:
+                ctx: used to access the values passed through the current context.
+                error: the error being thrown
+        """
         if isinstance(error, commands.MissingRequiredArgument):
             await ctx.send(
                 "FORMAT: \n --- \n$checkchart name (name of the chart) "
                 "\n EXAMPLE: $checkchart attendance")
 
     @commands.command(name="customchart",
-                      help="View grade distribution; FORMAT (many): chart_type (pie, bar, line) title (1 word)"
+                      help="View grade distribution; FORMAT (many): chart_type "
+                           "(pie, bar, line) title (1 word)"
                            "list data as coordinates: (a,1), (b,2), (c,3)")
     @commands.has_permissions(administrator=True)
-    async def customchart(self, ctx, title: str, chart: str, datacount: int, *args):
-        """customchart ...
-        Creates a custom chart of any kind and saves the chart to a json file
-        Args:
-            self: used to access parameters passed to the class through the constructor
-            ctx: used to access the values passed through the current context
-            title (str): name of the chart being searched
-            chart (str): the chart type
-            datacount (int): number of data points/categories
-            *args: Custom combination of data categories and numbers for those categories
+    async def customchart(self, ctx, title: str, chart: str, data_count: int, *args):
+        """
+            Creates a custom chart with given specs
+            Parameters:
+                ctx: used to access the values passed through the current context.
+                title: the name of the chart
+                chart: the type of the chart
+                data_count: number of data points
+                *args: a list of data labels and data numbers for each label
+            Returns:
+                returns a graph in the chat box
         """
 
-        if len(args) / 2 != datacount:
+        if len(args) / 2 != data_count:
             raise IllegalArgumentsError
 
-        with open('data/charts/chartstorage.json', 'r') as f:
-            storage = json.load(f)
+        with open('data/charts/chartstorage.json', 'r', encoding='utf-8') as file:
+            storage = json.load(file)
 
-        labelslist = []
-        datasetlist = []
+        labels_list = []
+        dataset_list = []
 
-        for x in range(datacount):
-            labelslist.append(args[x])
-            print(args[x])
+        for data_label in range(data_count):
+            labels_list.append(args[data_label])
+            print(args[data_label])
 
-        for x in range(datacount, len(args)):
-            datasetlist.append(args[x])
-            print(args[x])
+        for data_point in range(data_count, len(args)):
+            dataset_list.append(args[data_point])
+            print(args[data_point])
 
-        qc = QuickChart()
-        qc.width = 500
-        qc.height = 300
-        qc.device_pixel_ratio = 2.0
-        qc.config = {
+        quick_chart = QuickChart()
+        quick_chart.width = 500
+        quick_chart.height = 300
+        quick_chart.device_pixel_ratio = 2.0
+        quick_chart.config = {
             "type": "{}".format(chart),
             "data": {
-                "labels": labelslist,
+                "labels": labels_list,
                 "datasets": [{
                     "label": "{}".format(title),
-                    "data": datasetlist
+                    "data": dataset_list
                 }]
             }
         }
-        link = qc.get_url()
+        link = quick_chart.get_url()
         shortener = pyshorteners.Shortener()
         shortened_link = shortener.tinyurl.short(link)
 
         await self.update_chart(storage, title, shortened_link)
-        with open('data/charts/chartstorage.json', 'w') as f:
-            json.dump(storage, f, indent=4)
+        with open('data/charts/chartstorage.json', 'w', encoding='utf-8') as file:
+            json.dump(storage, file, indent=4)
         await ctx.send(f"{shortened_link}")
 
     @customchart.error
     async def customchart_error(self, ctx, error):
+        """
+            Finds error if custom chart format was wrong
+            Parameters:
+                ctx: used to access the values passed through the current context.
+                error: the error being thrown
+        """
         if isinstance(error, commands.MissingRequiredArgument):
             await ctx.send(
-                "FORMAT: \n --- \n$customchart title (1 word), chart_type (pie, bar, line), # of categories,  "
+                "FORMAT: \n --- \n"
+                "$customchart title (1 word), chart_type (pie, bar, line), "
+                "# of categories,  "
                 "name for Category 1, name for Category 2, name for Category N..."
                 "(continue for however many categories there are),"
                 "number for Category 1, number for Category 2, number for Category N..."
-                "(continue for however many categories there are)\n --- \n"
-                "EX. If # of categories is 5, there should be 5 category names and 5 category numbers")
-    
+                "(continue for however many categories there are)"
+                "\n --- \n"
+                "EX. If # of categories is 5, there should be 5 category names "
+                "and 5 category numbers")
+
     async def update_chart(self, storage, name, link):
+        """
+            Updates the URL of the chart
+            Parameters:
+                storage: the json file
+                name: the name of the chart
+                link: the link to the chart
+        """
         if not str(name) in storage:
             storage[str(name)] = {}
         storage[str(name)]['URL'] = link
 
 def setup(bot):
-    """setup ...
-    Adds file to bot's cog system
-    Args:
-        bot: bot context setup
+    """
+        Adds the cog to the bot's list
+        Parameters:
+            bot: the bot adding the cog
     """
     bot.add_cog(Charts(bot))
 
 class IllegalArgumentsError(Exception):
-    """IllegalArgumentsError ...
-        Error for incorrect arguments passed into $customchart
-        Args:
-            Exception: The exceptinon being thrown
-        """
-    print("customchart arguments invalid")
-    pass
+    """A custom illegal argument error when custom chart parameters are wrong"""
+    print("custom chart arguments invalid")
