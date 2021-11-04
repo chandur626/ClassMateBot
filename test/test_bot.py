@@ -99,8 +99,8 @@ async def test_deadline(bot):
     # await dpytest.message("$clearreminders")
     # assert dpytest.verify().message().contains().content("All reminders have been cleared..!!")
     # Test reminders while none have been set
-    # await dpytest.message("$coursedue CSC505")
-    # assert dpytest.verify().message().contains().content("Rejoice..!! You have no pending homeworks for CSC505..!!")
+    await dpytest.message("$coursedue CSC505")
+    assert dpytest.verify().message().contains().content("Rejoice..!! You have no pending homeworks for CSC505..!!")
     # Test setting 1 reminder
     await dpytest.message("$addhw CSC505 DANCE SEP 21 2050 10:00")
     assert dpytest.verify().message().contains().content(

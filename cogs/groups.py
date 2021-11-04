@@ -213,7 +213,7 @@ class Groups(commands.Cog):
     #         await ctx.send('You have already registered with the name: ' + member_name.title())
     #
     #     print_pool(student_pool)
-    #
+
     @commands.dm_only()
     @commands.is_owner()
     @commands.command(
