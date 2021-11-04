@@ -68,6 +68,7 @@ class Deadline(commands.Cog):
             self.reminders.append({"ID": author.id, "COURSE": coursename, "HOMEWORK": hwcount,
                                    "DUEDATE": str(duedate),
                                    "FUTURE": seconds})
+            print(self.reminders)
             cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
             os.chdir(cur_dir)
             json.dump(self.reminders, open("data/remindme/reminders.json", "w"))
@@ -394,6 +395,15 @@ class Deadline(commands.Cog):
 
 @tasks.loop(seconds=10)
 async def email_remainders():
+    """
+        asynchronously keeps on tracking the reminders and email about the same to users.
+
+        Parameters:
+
+        Returns:
+            return nothing as this is task to email the reminders.
+
+    """
     cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     os.chdir(cur_dir)
     with open('data/remindme/reminders.json', 'r') as rfile, open('data/email/emails.json',
@@ -403,6 +413,8 @@ async def email_remainders():
         for reminder in reminders:
             due_date = datetime.strptime(reminder["DUEDATE"], '%Y-%m-%d %H:%M:%S')
             remaining_time = due_date - datetime.today()
+            if 'eactive' in reminder.keys() and reminder['eactive'] == 0:
+                continue
             if remaining_time.total_seconds() <= 86400:
                 if str(reminder['ID']) in email_list:
                     EmailUtility().send_email(email_list[str(reminder['ID'])],
@@ -410,12 +422,12 @@ async def email_remainders():
                                               body="This email is to let you know that "
                                                    "{} is due at {}".format(
                                                   reminder["HOMEWORK"], reminder["DUEDATE"]))
+                    reminder['eactive'] = 0
+                    json.dump(reminders, open("data/remindme/reminders.json", "w"))
                 else:
                     continue
 
-# -----------------------------------------------------------------------------
-# checks if the folder that is going to hold json exists else creates a new one
-# -----------------------------------------------------------------------------
+
 def check_folders():
     """checks if the folder that is going to hold json exists else creates a new one."""
     cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -442,5 +454,5 @@ def setup(bot):
     check_files()
     n = Deadline(bot)
     loop = asyncio.get_event_loop()
-    loop.create_task(n.delete_old_reminders())
+    # loop.create_task(n.delete_old_reminders())
     bot.add_cog(n)
