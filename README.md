@@ -127,7 +127,10 @@ Email Verification
 Auto-Grouping
 
 :open_file_folder: [$auto-assign_command](https://github.com/chandur626/ClassMateBot/blob/main/docs/Groups/auto-assign.md)
-:open_file_folder: [$find-group_command](https://github.com/chandur626/ClassMateBot/blob/main/docs/Groups/find-group.md))
+
+:open_file_folder: [$find-group_command](https://github.com/chandur626/ClassMateBot/blob/main/docs/Groups/find-group.md)
+
+:open_file_folder: [member remove event](https://github.com/chandur626/ClassMateBot/blob/main/docs/Groups/member-remove.md)
 
 
 Sentiment Analysis
