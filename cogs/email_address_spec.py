@@ -26,16 +26,6 @@ class EmailAddressCRUD(commands.Cog):
         with open("data/email/emails.json", "r", encoding='utf-8') as file:
             self.email_list = json.load(file)
 
-    # ----------------------------------------------------------------------------------------------
-    #    Function: add_email_address(self, ctx, email_address: str)
-    #    Description: Configures the specified email address to json.
-    #    Inputs:
-    #    - self: used to access parameters passed to the class through the constructor
-    #    - ctx: used to access the values passed through the current context
-    #    - email_address: email address specified by the author
-    #    Outputs: returns either an error stating a reason for failure or returns a success message
-    #          indicating that the specified email address has been added
-    # ----------------------------------------------------------------------------------------------
     @commands.command(name="add_email",
                       help="add email address to receive notifications and files,"
                            " ex. $add_email no-reply@example.com")
@@ -80,15 +70,6 @@ class EmailAddressCRUD(commands.Cog):
                 'To use the add_email command, do: $add_email email_address'
                 '\n ( For example: $add_email no-reply@example.com)')
 
-    # ----------------------------------------------------------------------------------------------
-    #    Function: view_email_address(self, ctx)
-    #    Description: displays the configured email address of user.
-    #    Inputs:
-    #    - self: used to access parameters passed to the class through the constructor
-    #    - ctx: used to access the values passed through the current context
-    #    Outputs: returns either an error stating a reason for failure or returns a configured email
-    #    address.
-    # ----------------------------------------------------------------------------------------------
     @commands.command(name="view_email",
                       help="displays the configured email address of an user, ex. "
                            "$view_email no-reply@example.com")
@@ -117,16 +98,6 @@ class EmailAddressCRUD(commands.Cog):
             await ctx.send("There is no email address configured..!")
             return
 
-    # ----------------------------------------------------------------------------------------------
-    #    Function: update_email_address(self, ctx, email_address: str)
-    #    Description: Updates the configured email address in json with the specified one.
-    #    Inputs:
-    #    - self: used to access parameters passed to the class through the constructor.
-    #    - ctx: used to access the values passed through the current context.
-    #    - email_address: email address specified by the author.
-    #    Outputs: returns either an error stating a reason for failure or returns a success message
-    #          indicating that the specified email address has been updated.
-    # ----------------------------------------------------------------------------------------------
     @commands.command(name="update_email",
                       help="update email address of an user,ex. $update_email no-reply@example.com")
     async def update_email_address(self, ctx, email_address: str):
@@ -169,15 +140,6 @@ class EmailAddressCRUD(commands.Cog):
                 'To use the update_email command, do: $update_email email_address'
                 '\n ( For example: $update_email no-reply@example.com)')
 
-    # ----------------------------------------------------------------------------------------------
-    #    Function: delete_email_address(self, ctx)
-    #    Description: Deletes the configured email address in json.
-    #    Inputs:
-    #    - self: used to access parameters passed to the class through the constructor.
-    #    - ctx: used to access the values passed through the current context.
-    #    Outputs: returns either an error stating a reason for failure or returns a success message
-    #          indicating that the specified email address has been deleted.
-    # ----------------------------------------------------------------------------------------------
     @commands.command(name="delete_email",
                       help="delete email address of an user,ex. $delete_email no-reply@example.com")
     async def delete_email_address(self, ctx):
@@ -207,13 +169,6 @@ class EmailAddressCRUD(commands.Cog):
             await ctx.send("There is no email address configured..!")
             return
 
-    # ----------------------------------------------------------------------------------------------
-    #    Function: validate_email_address(self, ctx)
-    #    Description: validates the given email address.
-    #    Inputs:
-    #    - email_address: email_address provided as input.
-    #    Outputs: returns true if given email address is valid, false otherwise
-    # ----------------------------------------------------------------------------------------------
     @staticmethod
     def validate_email_address(email_address: str):
         """
@@ -231,9 +186,6 @@ class EmailAddressCRUD(commands.Cog):
         return False
 
 
-# -----------------------------------------------------------
-# add the file to the bots' cog system
-# -----------------------------------------------------------
 def setup(bot):
     """
        add the file to the bots' cog system.
