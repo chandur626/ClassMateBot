@@ -69,7 +69,7 @@ Students can also get the attachments mailed to their configured email address b
 Admins (In this case, TAs and Professors) can quickly make graphcs and charts directly in discord to share with students/users. Admins can use this feature to share grade distributions, lecture participation/attendance, or other course statistics. Pre-existing graph commands (such as grades or attendance) were made for ease-of-use so there are less command arguments for the admin to type. If the admin requires a custom chart, a command exists to do just that where admins can specify all data labels and information. All charts are named and stored into a json file when they are created. Students have acess to a command that allows them to view previously presented charts. 
 <p align="left"><img width=75% src="https://user-images.githubusercontent.com/60410421/139969198-dcd79af8-eb59-4fa7-934b-aca7023574a0.gif"></p>
 
-### 5 - Link Collection (Sandesh)
+### 5 - Link Collection
 
 Another problem that the students face is that they cannot save all the messages which contain important URLs that are helpful to them so we have built a user command where a student can retrieve all the links which are shared in the group with one click. This command lets users access all messages which contain URLs. The messages Containing URL are automatically get appended in a file and the file is attached when the `$send_links` command is input.
 
