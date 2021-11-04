@@ -12,6 +12,8 @@ import pytest
 # Main file bot testing. Uses dpytest to test bot activity on a simulated server with simulated members
 # ------------------------------------------------------------------------------------------------------
 
+
+
 # --------------------
 # Tests cogs/hello.py
 # --------------------
@@ -77,6 +79,7 @@ async def test_groupError(bot):
     #         'To use the join command, do: $join \'Group\' <Num> \n ( For example: $join Group 0 )')
     #     assert dpytest.verify().message().contains().content(
     #         'To use the join command, do: $join \'Group\' <Num> \n ( For example: $join Group 0 )')
+
 
 
 # -----------------------
@@ -269,14 +272,6 @@ async def test_pinError(bot):
             'To use the pin command, do: $pin TAGNAME LINK DESCRIPTION \n ( For example: $pin HW https://discordapp.com/channels/139565116151562240/139565116151562240/890813190433292298 HW8 reminder )')
 
 # --------------------
-# Tests cogs/links.py
-# --------------------
-@pytest.mark.asyncio
-async def test_links(bot):
-    await dpytest.message(content="$send_links")
-    assert dpytest.verify().message().contains().content("The below list of messages contains URLs")
-
-# --------------------
 # Tests cogs/newComer
 # --------------------
 @pytest.mark.asyncio
@@ -300,3 +295,11 @@ async def test_voting(bot):
         await dpytest.message(content="$vote Project 1")
         assert dpytest.verify().message().contains().content(
             "Could not fine the Group you are in, please contact a TA or join with your group number")
+
+# --------------------
+# Tests cogs/links.py
+# --------------------
+@pytest.mark.asyncio
+async def test_links(bot):
+    await dpytest.message(content="$send_links")
+    assert dpytest.verify().message().contains().content("The below list of messages contains URLs")
