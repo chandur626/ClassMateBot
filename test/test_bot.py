@@ -268,6 +268,13 @@ async def test_pinError(bot):
         assert dpytest.verify().message().contains().content(
             'To use the pin command, do: $pin TAGNAME LINK DESCRIPTION \n ( For example: $pin HW https://discordapp.com/channels/139565116151562240/139565116151562240/890813190433292298 HW8 reminder )')
 
+# --------------------
+# Tests cogs/links.py
+# --------------------
+@pytest.mark.asyncio
+async def test_links(bot):
+    await dpytest.message("$send_links")
+    assert dpytest.verify().message().content("The below list of messages contains URLs")
 
 # --------------------
 # Tests cogs/newComer
@@ -293,4 +300,3 @@ async def test_voting(bot):
         await dpytest.message(content="$vote Project 1")
         assert dpytest.verify().message().contains().content(
             "Could not fine the Group you are in, please contact a TA or join with your group number")
-
