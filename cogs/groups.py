@@ -213,9 +213,9 @@ class Groups(commands.Cog):
     #         await ctx.send('You have already registered with the name: ' + member_name.title())
     #
     #     print_pool(student_pool)
-
+    #
     @commands.dm_only()
-    @commands.has_permissions(administrator=True)
+    @commands.is_owner()
     @commands.command(
         name='auto-assign',
         help="use $auto-assign to automatically assign students who are not part of a group into vacant groups",
@@ -313,7 +313,10 @@ def load_pool() -> dict:
     os.chdir('server_data')
     with open('name_mapping.csv', mode='r') as infile:
         reader = csv.reader(infile)
-        student_pools = {rows[0].upper(): [rows[1].upper(), rows[2]] for rows in reader}
+        for rows in reader:
+            if rows == []:
+                break
+            student_pools = {rows[0].upper(): [rows[1].upper(), rows[2]]}
 
     return student_pools
 
