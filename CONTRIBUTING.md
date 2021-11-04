@@ -1,37 +1,40 @@
 # Contributing to ClassMateBot
 
-Thank you so much for taking an interest in contributing!
-
-Follow the set of guidelines below to contribute to ClassMateBot!
+Thank you so much for taking an interest in contributing!.
+When contributing to this repository, please first let owner know the change you wish to make via issue, email, or any other method before making a change.
 
 ## Code of Conduct
 
-By participating, you are expected to uphold this code. Please report unacceptable behavior to cpatel3@ncsu.edu, webrown2@ncsu.edu.
+By participating, you are expected to uphold this code. Please report unacceptable behavior to cmandap@ncsu.edu, nrlavani@ncsu.edu.
 
 Prerequisites required before starting this project during the Fall of 2021.
 
 1. Must be a graduate student at NC State University
 2. Must be a student in Software Engineering Course in Fall 2021
-3. Have proficiency in Python
 
 Starting 2022, anyone will be allowed to contribute, provided you have experience with python, discord.py and experience with GitHub
 
 ## How can I Contribute -
 
+### Issues
+
+Issues are very important in the context of contributing. Make sure that there is an issue created before you actually start developing.The issue created must have the following content.
+
+- Well-defined description explaining the enhancement idea or bug.
+- Tags depicting the type of issue.
+
 ### Pull Requests
+
+Pull requests should consist of title depicting what is the change about and description depicting why you are doing the change.<br>
+
 
 The process described here has several goals:
 
-- Maintain the projects quality
+- Maintain the projects quality.
 
-- Fix problems that are important to users
+- Fix problems that are important to users.
 
 - Enable a sustainable system for the projects maintainers to review contributions
-
-Please follow these steps to have your contribution reviewed by the maintainers:
-
-1. Include a clear and descriptive title.
-2. Include a description of the change.
 
 While the prerequisites above must be satisfied prior to having your pull request reviewed, the reviewer(s) may ask you to complete additional design work, tests, or other changes before your pull request can be ultimately accepted.
 
