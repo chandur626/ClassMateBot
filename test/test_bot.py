@@ -191,7 +191,7 @@ async def test_links(bot):
     await dpytest.message(content="$send_links")
     assert dpytest.verify().message().contains().content("The below list of messages contains URLs")    
     
-# --------------------
+"""# --------------------
 # Tests cogs/pinning
 # --------------------
 @pytest.mark.asyncio
@@ -232,7 +232,7 @@ async def test_unpinning(bot):
     await dpytest.message("$updatepin TestMessage2 www.zoom.com test")
     assert dpytest.verify().message().contains().content(
         "A pinned message has been updated with tag: TestMessage2 and new link: www.zoom.com")
-
+"""
 # ---------------------------
 # Tests cogs/emailAddressSpec
 # ---------------------------
