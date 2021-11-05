@@ -70,7 +70,6 @@ Students can analyze the sentiment using the below comments.
 <p align="left"><img width=75% src="https://github.com/chandur626/ClassMateBot/blob/main/data/media/Sentiment_Analysis.gif"></p>
 
 
-
 ### 4 - Data Visualization
 
 Admins (In this case, TAs and Professors) can quickly make graphcs and charts directly in discord to share with students/users. Admins can use this feature to share grade distributions, lecture participation/attendance, or other course statistics. Pre-existing graph commands (such as grades or attendance) were made for ease-of-use so there are less command arguments for the admin to type. If the admin requires a custom chart, a command exists to do just that where admins can specify all data labels and information. All charts are named and stored into a json file when they are created. Students have acess to a command that allows them to view previously presented charts. 
