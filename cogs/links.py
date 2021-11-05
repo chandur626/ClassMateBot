@@ -36,7 +36,7 @@ class Links(commands.Cog):
     async def send_links(self, ctx):
         """To display all messages which contain url."""
         await ctx.send("The below list of messages contains URLs")
-        await ctx.send(file=discord.File('data/links/links.txt'))
+        await ctx.send(file=discord.File('data/links/links.txt')) 
 
 
 def setup(bot):
