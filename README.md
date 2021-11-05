@@ -156,6 +156,7 @@ Auto-Grouping
 
 Sentiment Analysis
 
+:open_file_folder: [$sentiment_analysis_command](https://github.com/chandur626/ClassMateBot/blob/main/docs/SentimentAnalysis/Sentiment.md)
 
 
 Link Saving
