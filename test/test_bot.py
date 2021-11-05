@@ -278,6 +278,14 @@ async def test_emailAddressCRUD(bot):
             "To use the add_email command, do: $add_email email_address")
         assert dpytest.verify().message().contains().content(
             "( For example: $update_email no-reply@example.com)")
+        
+# --------------------
+# Tests cogs/links.py
+# --------------------
+@pytest.mark.asyncio
+async def test_links(bot):
+    await dpytest.message(content="$send_links")
+    assert dpytest.verify().message().contains().content("The below list of messages contains URLs")
 
 
 # ----------------------
@@ -333,13 +341,5 @@ async def test_email_utility(bot):
             EmailUtility().send_email('noreplyclassmatebot@example.com', attachment=file.read())
             
      
-# --------------------
-# Tests cogs/links.py
-# --------------------
-@pytest.mark.asyncio
-async def test_links(bot):
-    await dpytest.message(content="$send_links")
-    assert dpytest.verify().message().contains().content("The below list of messages contains URLs")
-
 
 
