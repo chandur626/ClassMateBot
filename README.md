@@ -67,7 +67,7 @@ Students can analyze the sentiment of the message. This will give the sentiment 
 
 Students can analyze the sentiment using the below comments. 
 
-<p align="left"><img width=75% src="https://github.com/chandur626/ClassMateBot/blob/main/data/media/Sentiment_Analysis.gif"></p>
+<p align="left"><img width=75% src="https://github.com/chandur626/ClassMateBot/blob/main/data/media/SentimentAnalysis.gif"></p>
 
 
 ### 4 - Data Visualization
