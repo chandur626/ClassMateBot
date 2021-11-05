@@ -32,7 +32,7 @@ class Links(commands.Cog):
             pass
 
 
-    @commands.command()
+    @commands.command(name='send_links', help='Command will output all the messages which contain url')
     async def send_links(self, ctx):
         """To display all messages which contain url."""
         await ctx.send("The below list of messages contains URLs")
