@@ -200,7 +200,7 @@ async def test_duethisweek(bot):
     await dpytest.message("$clearreminders")
     assert dpytest.verify().message().contains().content("All reminders have been cleared..!!")
 
-
+    
 # --------------------
 # Tests cogs/pinning
 # --------------------
@@ -295,7 +295,8 @@ async def test_emailAddressCRUD(bot):
             "To use the add_email command, do: $add_email email_address")
         assert dpytest.verify().message().contains().content(
             "( For example: $update_email no-reply@example.com)")
-
+        
+    
 
 # ----------------------
 # Tests invalid pinning
@@ -348,6 +349,7 @@ async def test_email_utility(bot):
     with pytest.raises(Exception):
         with open('data/email/emails.json') as file:
             EmailUtility().send_email('noreplyclassmatebot@example.com', attachment=file.read())
-
+            
+     
 
 
