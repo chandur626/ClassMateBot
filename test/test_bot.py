@@ -30,6 +30,23 @@ async def test_ping(bot):
     await dpytest.message("$ping")
     assert dpytest.verify().message().contains().content("Pong!")
 
+# -------------------
+# Tests cogs/SentimentAnalysis.py
+# -------------------
+@pytest.mark.asyncio
+async def test_positive_sentiment(bot):
+    await dpytest.message("This is a good idea")
+    await dpytest.message("$sentiment")
+    assert dpytest.verify().message().contains().content("POSITIVE")
+
+@pytest.mark.asyncio
+async def test_negative_sentiment(bot):
+    await dpytest.message("This is a bad idea")
+    await dpytest.message("$sentiment")
+    assert dpytest.verify().message().contains().content("NEGATIVE")
+
+
+
 
 # TODO Test user join messages
 
