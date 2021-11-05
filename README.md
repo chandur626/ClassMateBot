@@ -62,7 +62,13 @@ Students can also get the attachments mailed to their configured email address b
 
 <p align="left"><img width=75% src="https://github.com/chandur626/ClassMateBot/blob/main/data/media/Email_Attachment.gif"></p>
 
-### 3 - Sentiment Analysis (Harini)
+### 3 - Sentiment Analysis 
+Students can analyze the sentiment of the message. This will give the sentiment and the polarity score of the message. 
+
+Students can analyze the sentiment using the below comments. 
+
+<p align="left"><img width=75% src="https://github.com/chandur626/ClassMateBot/blob/main/data/media/Sentiment_Analysis.gif"></p>
+
 
 ### 4 - Data Visualization
 
