@@ -183,13 +183,6 @@ async def test_duethisweek(bot):
     await dpytest.message("$clearreminders")
     assert dpytest.verify().message().contains().content("All reminders have been cleared..!!")
 
-# --------------------
-# Tests cogs/links.py
-# --------------------
-@pytest.mark.asyncio
-async def test_links(bot):
-    await dpytest.message("$send_links")
-    assert dpytest.verify().message().contains().content("The below list of messages contains URLs")    
     
 # --------------------
 # Tests cogs/pinning
