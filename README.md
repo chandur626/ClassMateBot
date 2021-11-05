@@ -160,6 +160,8 @@ Sentiment Analysis
 
 Link Saving
 
+:open_file_folder: [member remove event](https://github.com/chandur626/ClassMateBot/blob/main/docs/StoreLinks/Links.md)
+
 
 
 ## Original Commands
