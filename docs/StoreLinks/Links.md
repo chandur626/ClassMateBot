@@ -16,4 +16,6 @@ The code that implements the above-mentioned functionality is located in [cogs/l
    
 # How to run it? 
   You are on the server that has the Classmate Bot active and online. All you have to do is enter the command `$send_links` in return the bot will send a text file that contains all messages with URL.
+  
+  <p align="left"><img width=75% src="https://github.com/chandur626/ClassMateBot/blob/main/data/media/Links.gif"></p>
  
