@@ -331,6 +331,15 @@ async def test_email_utility(bot):
     with pytest.raises(Exception):
         with open('data/email/emails.json') as file:
             EmailUtility().send_email('noreplyclassmatebot@example.com', attachment=file.read())
+            
+     
+# --------------------
+# Tests cogs/links.py
+# --------------------
+@pytest.mark.asyncio
+async def test_links(bot):
+    await dpytest.message(content="$send_links")
+    assert dpytest.verify().message().contains().content("The below list of messages contains URLs")
 
 
 
