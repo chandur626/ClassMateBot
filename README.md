@@ -62,20 +62,18 @@ Students can also get the attachments mailed to their configured email address b
 
 <p align="left"><img width=75% src="https://github.com/chandur626/ClassMateBot/blob/main/data/media/Email_Attachment.gif"></p>
 
-### 3 - Sentiment Analysis 
-Students and professors can check the sentiment and the polarity score of their message using this functionality. It analyses the given message and gives how negative or positive a message is. 
-Stundents can analyze the sentiment of their message using the below-mentioned commands.
-
-<p align="left"><img width=75% src="https://github.com/War-Keeper/ClassMateBot/blob/main/data/media/SentimentAnalysis.gif"></p>
-
-
+### 3 - Sentiment Analysis (Harini)
 
 ### 4 - Data Visualization
 
 Admins (In this case, TAs and Professors) can quickly make graphcs and charts directly in discord to share with students/users. Admins can use this feature to share grade distributions, lecture participation/attendance, or other course statistics. Pre-existing graph commands (such as grades or attendance) were made for ease-of-use so there are less command arguments for the admin to type. If the admin requires a custom chart, a command exists to do just that where admins can specify all data labels and information. All charts are named and stored into a json file when they are created. Students have acess to a command that allows them to view previously presented charts. 
 <p align="left"><img width=75% src="https://user-images.githubusercontent.com/60410421/139969198-dcd79af8-eb59-4fa7-934b-aca7023574a0.gif"></p>
 
-### 5 - Link Collection (Sandesh)
+### 5 - Link Collection
+
+Another problem that the students face is that they cannot save all the messages which contain important URLs that are helpful to them so we have built a user command where a student can retrieve all the links which are shared in the group with one click. This command lets users access all messages which contain URLs. The messages Containing URL are automatically get appended in a file and the file is attached when the `$send_links` command is input.
+
+<p align="left"><img width=75% src="https://github.com/chandur626/ClassMateBot/blob/main/data/media/Links.gif"></p>
 
 ### 6 - User Participation Ranking
 
@@ -209,11 +207,12 @@ For the groups.py file
 ---
 
 ## :earth_americas: Future Scope
-[Project 3](https://github.com/chandur626/ClassMateBot/projects/1) TODO tasks are located in the Projects tab. 
+[Project 3](https://github.com/chandur626/ClassMateBot/projects/2) TODO tasks are located in the Projects tab. 
 
 ---
 
 ## :pencil2: Contributors
+### Version 2 
 
 [Chandrahas Reddy Mandapati](https://github.com/chandur626)
 
@@ -224,3 +223,15 @@ For the groups.py file
 [Harini Bharata](https://github.com/HariniBharata)
 
 [Sandesh Aladhalli Shivarudre Gowda](https://github.com/05sandesh)
+
+### Version 1
+
+[Chaitanya Patel](https://github.com/War-Keeper)
+
+[Evan Brown](https://github.com/wevanbrown)
+
+[Kunwar Vidhan](https://github.com/kunwarvidhan)
+
+[Sunil Upare](https://github.com/sunil1511)
+
+[Sumedh Salvi](https://github.com/salvisumedh2396)
