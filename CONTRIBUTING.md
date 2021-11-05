@@ -1,6 +1,6 @@
 # Contributing to ClassMateBot
 
-Thank you so much for taking an interest in contributing!.
+Thank you so much for taking an interest in contributing!
 When contributing to this repository, please first let owner know the change you wish to make via issue, email, or any other method before making a change.
 
 ## Code of Conduct
@@ -32,7 +32,7 @@ The process described here has several goals:
 
 - Maintain the projects quality.
 
-- Fix problems that are important to users.
+- Fix problems that are important to users (in this case, students and professors/TAs who are using this bot for educational enhancement)
 
 - Enable a sustainable system for the projects maintainers to review contributions
 
