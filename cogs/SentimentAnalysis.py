@@ -1,4 +1,6 @@
-# Copyright (c) 2021 War-Keeper
+"""
+ Copyright (c) 2021 War-Keeper
+"""
 
 import csv
 import discord
@@ -8,30 +10,26 @@ import flair
 from threading import Event
 
 """
------------------------------------------------------------
-This File contains commands for sentiment analysis,
-displays the sentiment of the message sent.
------------------------------------------------------------
+    This File contains commands for sentiment analysis,
+    displays the sentiment of the message sent.
 """
-class Sentiment(commands.Cog):
 
+
+class Sentiment(commands.Cog):
     """
-    -----------
-    initialize
-    -----------
+        initialize
     """
+
     def __init__(self, bot):
         self.bot = bot
         self.mess = ""
-
-
 
     @commands.Cog.listener()
     async def on_message(self, message):
         self.mess = message.content
 
     """
-    -------------------------------------------------------------------------------------------------------------
+
         Function: sentiment(self, ctx)
         Description: Analyses the sentiment of the message when the command $sentiment is given.
         Inputs:
@@ -39,7 +37,7 @@ class Sentiment(commands.Cog):
         - ctx: used to access the values passed through the current context
         Outputs: The bot replies with the sentiment of the given message.
                     If the message is empty, it replies with a "Please enter your message".
-        --------------------------------------------------------------------------------------------------------------
+
         """
 
     @commands.command(name='sentiment',
@@ -64,14 +62,11 @@ class Sentiment(commands.Cog):
         except:
             print("an exception has occurred")
 
-
-
-
     """
-    -----------------------------------------------------------
-    add the file to the bot's cog system
-    -----------------------------------------------------------
+        add the file to the bot's cog system
     """
+
+
 def setup(bot):
     bot.add_cog(Sentiment(bot))
 
