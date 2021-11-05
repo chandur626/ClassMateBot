@@ -207,11 +207,12 @@ For the groups.py file
 ---
 
 ## :earth_americas: Future Scope
-[Project 3](https://github.com/chandur626/ClassMateBot/projects/1) TODO tasks are located in the Projects tab. 
+[Project 3](https://github.com/chandur626/ClassMateBot/projects/2) TODO tasks are located in the Projects tab. 
 
 ---
 
 ## :pencil2: Contributors
+### Version 2 
 
 [Chandrahas Reddy Mandapati](https://github.com/chandur626)
 
@@ -222,3 +223,15 @@ For the groups.py file
 [Harini Bharata](https://github.com/HariniBharata)
 
 [Sandesh Aladhalli Shivarudre Gowda](https://github.com/05sandesh)
+
+### Version 1
+
+[Chaitanya Patel](https://github.com/War-Keeper)
+
+[Evan Brown](https://github.com/wevanbrown)
+
+[Kunwar Vidhan](https://github.com/kunwarvidhan)
+
+[Sunil Upare](https://github.com/sunil1511)
+
+[Sumedh Salvi](https://github.com/salvisumedh2396)
