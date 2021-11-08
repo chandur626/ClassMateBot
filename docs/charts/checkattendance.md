@@ -16,3 +16,5 @@ Enter space-separated: "$checkattendance
 $checkattendance
 ```
 Successful execution will show a attendance distribution chart
+
+![checkattendance](https://user-images.githubusercontent.com/60410421/140683062-490ec59d-8be5-433b-bd93-57ed6f57243a.gif)

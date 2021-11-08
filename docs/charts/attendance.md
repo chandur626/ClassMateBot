@@ -16,4 +16,6 @@ Enter space-separated: "$attendance (# students attended) (# students absent)
 $attendance 110 73
 ```
 Successful execution will show an attendance distribution chart (second half of gif)
-<p align="left"><img width=75% src="https://user-images.githubusercontent.com/60410421/139969198-dcd79af8-eb59-4fa7-934b-aca7023574a0.gif"></p>
+
+![attendance](https://user-images.githubusercontent.com/60410421/140683281-21fe3ddf-f3d7-460a-a933-8f0faef7f45e.gif)
+
