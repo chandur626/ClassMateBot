@@ -16,3 +16,6 @@ Enter space-separated: "$level
 $level
 ```
 Successful execution means the bot will respond with a message saying your name, level, experience, and progress to next level.
+
+![level](https://user-images.githubusercontent.com/60410421/140683839-60cc8157-94ba-413a-a02c-b5f1611b42ca.gif)
+
