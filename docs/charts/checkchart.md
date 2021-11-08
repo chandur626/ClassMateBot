@@ -13,6 +13,8 @@ This function checks if any chart with the given name exists in users.json and i
 # How to run it? (Small Example)
 Enter space-separated: "$checkchart (name of the chart you are looking for)
 ```
-$checkattendance
+$checkchart ExamAverages
 ```
 Successful execution will show a chart or a message saying the chart being searched doesn't exist
+
+![checkchart](https://user-images.githubusercontent.com/60410421/140683496-1b3b91a0-cedf-41e3-9d06-277d727425fa.gif)
