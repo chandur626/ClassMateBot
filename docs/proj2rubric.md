@@ -13,10 +13,10 @@
 |.5|Number of commits: by different people  | [Github Insights](https://github.com/chandur626/ClassMateBot/pulse/monthly)|.5|
 |1|issues are being closed | evidence in GH [closed issues](https://github.com/chandur626/ClassMateBot/issues?q=is%3Aissue+is%3Aclosed)|1|
 |.5|issues are discussed before they are closed | discussions on the issue and weekly group meetings.| .5|
-|.5|Use of syntax checkers. | [flake8 in workflow](https://github.com/chandur626/ClassMateBot/blob/main/.github/workflows/main.yml)|.5|
+|.5|Use of syntax checkers. | [pylint and flake8 in workflow](https://github.com/chandur626/ClassMateBot/blob/main/.github/workflows/main.yml)|.5|
 |1|Issues reports: there are many | [Issues](https://github.com/chandur626/ClassMateBot/issues) |1|
-|.5|Use of code formatters. | [flake8 in workflow](https://github.com/chandur626/ClassMateBot/blob/main/.github/workflows/main.yml)|.5|
-|.5|Use of style checkers | [flake8 in workflow](https://github.com/chandur626/ClassMateBot/blob/main/.github/workflows/main.yml)|.5|
+|.5|Use of code formatters. | [pylint and flake8 in workflow](https://github.com/chandur626/ClassMateBot/blob/main/.github/workflows/main.yml)|.5|
+|.5|Use of style checkers | [pylint and flake8 in workflow](https://github.com/chandur626/ClassMateBot/blob/main/.github/workflows/main.yml)|.5|
 |.5|Docs: short video, animated, hosted on your repo. That convinces people why they want to work on your code. | [README.md](https://github.com/chandur626/ClassMateBot/blob/main/README.md) |.5|
 |.5|test cases exist  | [Github](https://github.com/chandur626/ClassMateBot/blob/main/test/test_bot.py)|.5|
 |.5|Use of code coverage  | [Codecov](https://app.codecov.io/gh/chandur626/ClassMateBot)|.5|
