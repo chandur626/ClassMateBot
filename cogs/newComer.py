@@ -47,7 +47,7 @@ class Helper(commands.Cog):
         if (
             unverified in member.roles
         ):  # checks if the user running the command has the unverified role
-            if name == None:
+            if not name:
 
                 await ctx.send(
                     "To use the verify command, do: $verify <your_full_name> \n ( For example: $ver"

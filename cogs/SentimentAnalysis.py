@@ -51,7 +51,7 @@ class Sentiment(commands.Cog):
             flair_sentiment = flair.models.TextClassifier.load('en-sentiment')
             message = self.mess
 
-            if message == "" or message == None:
+            if message == "" or message is None:
                 await ctx.send("Please enter your message")
             else:
                 print(message)
