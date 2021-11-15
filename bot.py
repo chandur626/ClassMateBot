@@ -1,12 +1,12 @@
 # bot.py
 # Copyright (c) 2021 War-Keeper
-import datetime
 import json
 import os
 import discord
 from discord import Intents
 from dotenv import load_dotenv
-from discord.ext.commands import Bot, has_permissions, CheckFailure
+from discord.ext.commands import Bot, has_permissions
+from Utility.email_utility import EmailUtility
 
 # ----------------------------------------------------------------------------------------------
 # Initializes the discord bot with a unique TOKEN and joins the bot to a server provided by the
@@ -59,6 +59,23 @@ async def on_ready():
     )
     print("READY!")
 
+@bot.event
+async def on_raw_reaction_add(payload):
+    print(payload)
+    email = EmailUtility()
+    email_list = json.load(open("data/email/emails.json"))
+    guild = bot.get_guild(payload.guild_id)
+    channel = guild.get_channel(payload.channel_id)
+    message = await channel.fetch_message(payload.message_id)
+    if payload.emoji.name == '\N{WHITE HEAVY CHECK MARK}':
+        if str(payload.user_id) not in email_list:
+            await channel.send("Please make sure you have an email address configured..!")
+            return
+        for attachment in message.attachments:
+            filename = attachment.filename
+            attachment = await attachment.read()
+            email.send_email(email_list[str(payload.user_id)], attachment, filename=filename)
+
 
 # ------------------------------------------------------------------------------------------
 #    Function: on_member_join(member)
@@ -78,6 +95,7 @@ async def on_member_join(member):
     await member.send(
         "Verify yourself before getting started! \n To use the verify command, do: $verify <your_full_name> \n \
         ( For example: $verify Jane Doe )")
+
 
 #    Function: on_error(event, *args, **kwargs)
 #    Description: Handles bot errors, prints errors to a log file

@@ -357,6 +357,8 @@ class Deadline(commands.Cog):
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
+      
+      
         await ctx.send(
             '\nUnidentified command... Refer to $help to get the list of available commands')
 

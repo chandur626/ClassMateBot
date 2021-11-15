@@ -19,3 +19,5 @@ FORMAT: $customchart title (1 word), chart_type (pie, bar, line), # of categorie
 $customchart class_average_between_6_semesters bar 6 S18 F18 S19 F19 S20 F20 90 91 92 93 94 95
 ```
 Successful execution will show the custom chart
+
+![customchart](https://user-images.githubusercontent.com/60410421/140682904-4b3ca435-d34d-427c-868b-0fa78a0e2274.gif)

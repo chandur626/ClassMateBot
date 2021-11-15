@@ -2,6 +2,7 @@
 import discord
 import os
 import sys
+from Utility.email_utility import EmailUtility
 from datetime import datetime, timedelta
 import discord.ext.test as dpytest
 from dotenv import load_dotenv
@@ -28,6 +29,23 @@ async def test_hello(bot):
 async def test_ping(bot):
     await dpytest.message("$ping")
     assert dpytest.verify().message().contains().content("Pong!")
+
+# -------------------
+# Tests cogs/SentimentAnalysis.py
+# -------------------
+@pytest.mark.asyncio
+async def test_positive_sentiment(bot):
+    await dpytest.message("This is a good idea")
+    await dpytest.message("$sentiment")
+    assert dpytest.verify().message().contains().content("POSITIVE")
+
+@pytest.mark.asyncio
+async def test_negative_sentiment(bot):
+    await dpytest.message("This is a bad idea")
+    await dpytest.message("$sentiment")
+    assert dpytest.verify().message().contains().content("NEGATIVE")
+
+
 
 
 # TODO Test user join messages
@@ -78,6 +96,28 @@ async def test_groupError(bot):
     #     assert dpytest.verify().message().contains().content(
     #         'To use the join command, do: $join \'Group\' <Num> \n ( For example: $join Group 0 )')
 
+# ------------------------------------
+# Tests cogs/groups.py autogrouping
+# # ------------------------------------
+@pytest.mark.asyncio
+
+async def test_automatic_grouping(bot):
+        await  dpytest.message("$auto-assign")
+        assert dpytest.verify().message().contains().content("No modifications made. Every Student is part of a Group")
+
+
+# ------------------------------------
+#Tests cogs/groups.py find-group
+# # ------------------------------------
+@pytest.mark.asyncio
+#
+async def test_find_group(bot):
+        # test with invalid input
+        with pytest.raises(Exception):
+            await  dpytest.message("$find-group UnknownUser")
+            assert dpytest.verify().message().contains().content("Please check the name entered and try again")
+            assert dpytest.verify().message().contains().content('To use the find-group command, do: $find-group <StudentName> \n \
+                ( For example: $find-group Jane Doe )')
 
 # -----------------------
 # Tests cogs/deadline.py
@@ -160,7 +200,7 @@ async def test_duethisweek(bot):
     await dpytest.message("$clearreminders")
     assert dpytest.verify().message().contains().content("All reminders have been cleared..!!")
 
-
+    
 # --------------------
 # Tests cogs/pinning
 # --------------------
@@ -255,7 +295,8 @@ async def test_emailAddressCRUD(bot):
             "To use the add_email command, do: $add_email email_address")
         assert dpytest.verify().message().contains().content(
             "( For example: $update_email no-reply@example.com)")
-
+        
+    
 
 # ----------------------
 # Tests invalid pinning
@@ -293,4 +334,22 @@ async def test_voting(bot):
         await dpytest.message(content="$vote Project 1")
         assert dpytest.verify().message().contains().content(
             "Could not fine the Group you are in, please contact a TA or join with your group number")
+
+
+# ---------------------------
+# Tests Utility/email_utility
+# ---------------------------
+@pytest.mark.asyncio
+async def test_email_utility(bot):
+    # Test email utility negative cases.
+    # Test email utility by providing just recipient email address.
+    with pytest.raises(Exception):
+        EmailUtility().send_email('noreplyclassmatebot@example.com')
+    # Test email utility by providing just recipient email address and attachment.
+    with pytest.raises(Exception):
+        with open('data/email/emails.json') as file:
+            EmailUtility().send_email('noreplyclassmatebot@example.com', attachment=file.read())
+            
+     
+
 

@@ -3,10 +3,9 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 ![Python](https://img.shields.io/badge/python-v3.6+-yellow.svg)
 [![License](https://img.shields.io/badge/license-MIT-orange.svg)](https://opensource.org/licenses/MIT)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5539956.svg)](https://doi.org/10.5281/zenodo.5539956)
-![Build Status](https://github.com/War-Keeper/ClassMateBot/actions/workflows/main.yml/badge.svg)
-[![codecov](https://codecov.io/gh/War-Keeper/ClassMateBot/branch/main/graph/badge.svg)](https://codecov.io/gh/War-Keeper/ClassMateBot)
-
+[![DOI](https://zenodo.org/badge/418217645.svg)](https://zenodo.org/badge/latestdoi/418217645)
+[![Python application](https://github.com/chandur626/ClassMateBot/actions/workflows/main.yml/badge.svg)](https://github.com/chandur626/ClassMateBot/actions/workflows/main.yml)
+[![codecov](https://codecov.io/gh/chandur626/ClassMateBot/branch/main/graph/badge.svg?token=2SKMHUAZV8)](https://codecov.io/gh/chandur626/ClassMateBot)
 <p align="center">
   <a href="#dart-basic-overview">Basic Overview</a>
   ::
@@ -54,16 +53,33 @@ Auto-Grouping command allows TAs and Professors to automatically assign students
 ![$auto-assign](https://github.com/chandur626/ClassMateBot/blob/main/data/media/Auto-grouping.gif)
 
 
-### 2 - Email Functions (Chandrahas) 
+### 2 - Email Functionality
+Students can now configure their email address to receive attachments and various notifications such as reminders. Students can create or update the configured email address using the below-mentioned commands in the Version 2 commands section.
 
-### 3 - Sentiment Analysis (Harini)
+<p align="left"><img width=75% src="https://github.com/chandur626/ClassMateBot/blob/main/data/media/Email_Address.gif"></p>
+
+Students can also get the attachments mailed to their configured email address by reacting with white_heavy_mark to the attachment message.
+
+<p align="left"><img width=75% src="https://github.com/chandur626/ClassMateBot/blob/main/data/media/Email_Attachment.gif"></p>
+
+### 3 - Sentiment Analysis 
+Students can analyze the sentiment of the message. This will give the sentiment and the polarity score of the message. 
+
+Students can analyze the sentiment using the below comments. 
+
+<p align="left"><img width=75% src="https://github.com/chandur626/ClassMateBot/blob/main/data/media/SentimentAnalysis.gif"></p>
+
 
 ### 4 - Data Visualization
 
 Admins (In this case, TAs and Professors) can quickly make graphcs and charts directly in discord to share with students/users. Admins can use this feature to share grade distributions, lecture participation/attendance, or other course statistics. Pre-existing graph commands (such as grades or attendance) were made for ease-of-use so there are less command arguments for the admin to type. If the admin requires a custom chart, a command exists to do just that where admins can specify all data labels and information. All charts are named and stored into a json file when they are created. Students have acess to a command that allows them to view previously presented charts. 
 <p align="left"><img width=75% src="https://user-images.githubusercontent.com/60410421/139969198-dcd79af8-eb59-4fa7-934b-aca7023574a0.gif"></p>
 
-### 5 - Link Collection (Sandesh)
+### 5 - Link Collection
+
+Another problem that the students face is that they cannot save all the messages which contain important URLs that are helpful to them so we have built a user command where a student can retrieve all the links which are shared in the group with one click. This command lets users access all messages which contain URLs. The messages Containing URL are automatically get appended in a file and the file is attached when the `$send_links` command is input.
+
+<p align="left"><img width=75% src="https://github.com/chandur626/ClassMateBot/blob/main/data/media/Links.gif"></p>
 
 ### 6 - User Participation Ranking
 
@@ -77,7 +93,7 @@ Users are all given a participation rank the moment they join a discord communit
 
 1. Clone the Github repository to a desired location on your computer. You will need [git](https://git-scm.com/) to be preinstalled on your machine. Once the repository is cloned, you will then ```cd``` into the local repository.
 ```
-git clone https://github.com/War-Keeper/ClassMateBot.git
+git clone https://github.com/chandur626/ClassMateBot.git
 cd (into the ClassMateBot folder. If you type the commmand "ls", you should see the contents of the ClassMateBot folder)
 ```
 2. This project uses Python 3, so make sure that [Python](https://www.python.org/downloads/) and [Pip](https://pip.pypa.io/en/stable/installation/) are preinstalled. All requirements of the project are listed in the ```requirements.txt``` file. Use pip to install all of those.
@@ -118,8 +134,15 @@ User Ranking
 :open_file_folder: [$add_database command](https://github.com/chandur626/ClassMateBot/blob/main/docs/userRanking/add_database.md)
 
 
-Email Verification
+Email Specification
 
+:open_file_folder: [$add_email_command](https://github.com/chandur626/ClassMateBot/blob/main/docs/EmailSpecification/add_email.md)
+
+:open_file_folder: [$view_email_command](https://github.com/chandur626/ClassMateBot/blob/main/docs/EmailSpecification/view_email.md)
+
+:open_file_folder: [$update_email command](https://github.com/chandur626/ClassMateBot/blob/main/docs/EmailSpecification/update_email.md)
+
+:open_file_folder: [$delete_email_command](https://github.com/chandur626/ClassMateBot/blob/main/docs/EmailSpecification/delete_email.md)
 
 
 Auto-Grouping
@@ -133,9 +156,12 @@ Auto-Grouping
 
 Sentiment Analysis
 
+:open_file_folder: [$sentiment_analysis_command](https://github.com/chandur626/ClassMateBot/blob/main/docs/SentimentAnalysis/Sentiment.md)
 
 
 Link Saving
+
+:open_file_folder: [$send_links_command](https://github.com/chandur626/ClassMateBot/blob/main/docs/StoreLinks/Links.md)
 
 
 
@@ -190,11 +216,12 @@ For the groups.py file
 ---
 
 ## :earth_americas: Future Scope
-[Project 3](https://github.com/chandur626/ClassMateBot/projects/1) TODO tasks are located in the Projects tab. 
+[Project 3](https://github.com/chandur626/ClassMateBot/projects/2) TODO tasks are located in the Projects tab. 
 
 ---
 
 ## :pencil2: Contributors
+### Version 2 
 
 [Chandrahas Reddy Mandapati](https://github.com/chandur626)
 
@@ -205,3 +232,15 @@ For the groups.py file
 [Harini Bharata](https://github.com/HariniBharata)
 
 [Sandesh Aladhalli Shivarudre Gowda](https://github.com/05sandesh)
+
+### Version 1
+
+[Chaitanya Patel](https://github.com/War-Keeper)
+
+[Evan Brown](https://github.com/wevanbrown)
+
+[Kunwar Vidhan](https://github.com/kunwarvidhan)
+
+[Sunil Upare](https://github.com/sunil1511)
+
+[Sumedh Salvi](https://github.com/salvisumedh2396)
