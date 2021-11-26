@@ -1,10 +1,10 @@
-<p align="center"><img width=100% src="https://github.com/chandur626/ClassMateBot/blob/README-update/data/title.png"></p>
+<p align="center"><img width=100% src="https://github.com/Ashwinshankar98/ClassMateBot/blob/README-update/data/title.png"></p>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 ![Python](https://img.shields.io/badge/python-v3.6+-yellow.svg)
 [![License](https://img.shields.io/badge/license-MIT-orange.svg)](https://opensource.org/licenses/MIT)
 [![DOI](https://zenodo.org/badge/418217645.svg)](https://zenodo.org/badge/latestdoi/418217645)
-[![Python application](https://github.com/chandur626/ClassMateBot/actions/workflows/main.yml/badge.svg)](https://github.com/chandur626/ClassMateBot/actions/workflows/main.yml)
+[![Python application](https://github.com/Ashwinshankar98/ClassMateBot/actions/workflows/main.yml/badge.svg)](https://github.com/Ashwinshankar98/ClassMateBot/actions/workflows/main.yml)
 [![codecov](https://codecov.io/gh/chandur626/ClassMateBot/branch/main/graph/badge.svg?token=2SKMHUAZV8)](https://codecov.io/gh/chandur626/ClassMateBot)
 <p align="center">
   <a href="#dart-basic-overview">Basic Overview</a>
@@ -43,31 +43,31 @@ For Iteration 2, we aimed to expand the Bot's functionality so Professors and TA
 
 ---
 ### 0 - Original Features
-You can find the Original Features from Iteration 1 [here](https://github.com/chandur626/ClassMateBot/blob/README-update/docs/Iteration1Features.md)
+You can find the Original Features from Iteration 1 [here](https://github.com/Ashwinshankar98/ClassMateBot/blob/README-update/docs/Iteration1Features.md)
 
 ### 1 - Auto-Grouping Students
 
 Auto-Grouping command allows TAs and Professors to automatically assign students into groups for project works. The Iteration 1 provided join command which can be used by students to join a specific group. Post deadline, If students have not yet joined a group, then the TA can simply use the auto-grouping command to assign those students into groups having vacant positions. Groups with maximum vacant positions are given the first priority. A simple example is shown below :
 
 
-![$auto-assign](https://github.com/chandur626/ClassMateBot/blob/main/data/media/Auto-grouping.gif)
+![$auto-assign](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/data/media/Auto-grouping.gif)
 
 
 ### 2 - Email Functionality
 Students can now configure their email address to receive attachments and various notifications such as reminders. Students can create or update the configured email address using the below-mentioned commands in the Version 2 commands section.
 
-<p align="left"><img width=75% src="https://github.com/chandur626/ClassMateBot/blob/main/data/media/Email_Address.gif"></p>
+<p align="left"><img width=75% src="https://github.com/Ashwinshankar98/ClassMateBot/blob/main/data/media/Email_Address.gif"></p>
 
 Students can also get the attachments mailed to their configured email address by reacting with white_heavy_mark to the attachment message.
 
-<p align="left"><img width=75% src="https://github.com/chandur626/ClassMateBot/blob/main/data/media/Email_Attachment.gif"></p>
+<p align="left"><img width=75% src="https://github.com/Ashwinshankar98/ClassMateBot/blob/main/data/media/Email_Attachment.gif"></p>
 
 ### 3 - Sentiment Analysis 
 Students can analyze the sentiment of the message. This will give the sentiment and the polarity score of the message. 
 
 Students can analyze the sentiment using the below comments. 
 
-<p align="left"><img width=75% src="https://github.com/chandur626/ClassMateBot/blob/main/data/media/SentimentAnalysis.gif"></p>
+<p align="left"><img width=75% src="https://github.com/Ashwinshankar98/ClassMateBot/blob/main/data/media/SentimentAnalysis.gif"></p>
 
 
 ### 4 - Data Visualization
@@ -79,7 +79,7 @@ Admins (In this case, TAs and Professors) can quickly make graphcs and charts di
 
 Another problem that the students face is that they cannot save all the messages which contain important URLs that are helpful to them so we have built a user command where a student can retrieve all the links which are shared in the group with one click. This command lets users access all messages which contain URLs. The messages Containing URL are automatically get appended in a file and the file is attached when the `$send_links` command is input.
 
-<p align="left"><img width=75% src="https://github.com/chandur626/ClassMateBot/blob/main/data/media/Links.gif"></p>
+<p align="left"><img width=75% src="https://github.com/Ashwinshankar98/ClassMateBot/blob/main/data/media/Links.gif"></p>
 
 ### 6 - User Participation Ranking
 
@@ -114,103 +114,103 @@ python3 bot.py
 ## Version 2 Commands
 Data Visualization
 
-:open_file_folder: [$grades command](https://github.com/chandur626/ClassMateBot/blob/main/docs/charts/grades.md)
+:open_file_folder: [$grades command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/charts/grades.md)
 
-:open_file_folder: [$attendance command](https://github.com/chandur626/ClassMateBot/blob/main/docs/charts/attendance.md)
+:open_file_folder: [$attendance command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/charts/attendance.md)
 
-:open_file_folder: [$customchart command](https://github.com/chandur626/ClassMateBot/blob/main/docs/charts/customchart.md)
+:open_file_folder: [$customchart command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/charts/customchart.md)
 
-:open_file_folder: [$checkgrade command](https://github.com/chandur626/ClassMateBot/blob/main/docs/charts/checkgrade.md)
+:open_file_folder: [$checkgrade command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/charts/checkgrade.md)
 
-:open_file_folder: [$checkattendance command](https://github.com/chandur626/ClassMateBot/blob/main/docs/charts/checkattendance.md)
+:open_file_folder: [$checkattendance command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/charts/checkattendance.md)
 
-:open_file_folder: [$checkchart command](https://github.com/chandur626/ClassMateBot/blob/main/docs/charts/checkchart.md)
+:open_file_folder: [$checkchart command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/charts/checkchart.md)
 
 
 User Ranking
 
-:open_file_folder: [$levels command](https://github.com/chandur626/ClassMateBot/blob/main/docs/userRanking/level.md)
+:open_file_folder: [$levels command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/userRanking/level.md)
 
-:open_file_folder: [$add_database command](https://github.com/chandur626/ClassMateBot/blob/main/docs/userRanking/add_database.md)
+:open_file_folder: [$add_database command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/userRanking/add_database.md)
 
 
 Email Specification
 
-:open_file_folder: [$add_email_command](https://github.com/chandur626/ClassMateBot/blob/main/docs/EmailSpecification/add_email.md)
+:open_file_folder: [$add_email_command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/EmailSpecification/add_email.md)
 
-:open_file_folder: [$view_email_command](https://github.com/chandur626/ClassMateBot/blob/main/docs/EmailSpecification/view_email.md)
+:open_file_folder: [$view_email_command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/EmailSpecification/view_email.md)
 
-:open_file_folder: [$update_email command](https://github.com/chandur626/ClassMateBot/blob/main/docs/EmailSpecification/update_email.md)
+:open_file_folder: [$update_email command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/EmailSpecification/update_email.md)
 
-:open_file_folder: [$delete_email_command](https://github.com/chandur626/ClassMateBot/blob/main/docs/EmailSpecification/delete_email.md)
+:open_file_folder: [$delete_email_command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/EmailSpecification/delete_email.md)
 
 
 Auto-Grouping
 
-:open_file_folder: [$auto-assign_command](https://github.com/chandur626/ClassMateBot/blob/main/docs/Groups/auto-assign.md)
+:open_file_folder: [$auto-assign_command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/Groups/auto-assign.md)
 
-:open_file_folder: [$find-group_command](https://github.com/chandur626/ClassMateBot/blob/main/docs/Groups/find-group.md)
+:open_file_folder: [$find-group_command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/Groups/find-group.md)
 
-:open_file_folder: [member remove event](https://github.com/chandur626/ClassMateBot/blob/main/docs/Groups/member-remove.md)
+:open_file_folder: [member remove event](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/Groups/member-remove.md)
 
 
 Sentiment Analysis
 
-:open_file_folder: [$sentiment_analysis_command](https://github.com/chandur626/ClassMateBot/blob/main/docs/SentimentAnalysis/Sentiment.md)
+:open_file_folder: [$sentiment_analysis_command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/SentimentAnalysis/Sentiment.md)
 
 
 Link Saving
 
-:open_file_folder: [$send_links_command](https://github.com/chandur626/ClassMateBot/blob/main/docs/StoreLinks/Links.md)
+:open_file_folder: [$send_links_command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/StoreLinks/Links.md)
 
 
 
 ## Original Commands
 For the newComer.py file
 
-:open_file_folder: [$verify command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/Verification/verify.md)
+:open_file_folder: [$verify command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/Verification/verify.md)
 
 For the voting.py file
 
-:open_file_folder: [$projects command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/Voting/projects.md)
+:open_file_folder: [$projects command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/Voting/projects.md)
 
-:open_file_folder: [$vote command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/Voting/vote.md)
+:open_file_folder: [$vote command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/Voting/vote.md)
 
 For the deadline.py file
 
-:open_file_folder: [$add_homework command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/Reminders/add_homework.md)
+:open_file_folder: [$add_homework command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/Reminders/add_homework.md)
 
-:open_file_folder: [$change_reminder_due_date command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/Reminders/change_reminder_due_date.md)
+:open_file_folder: [$change_reminder_due_date command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/Reminders/change_reminder_due_date.md)
 
-:open_file_folder: [$clear_all_reminders command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/Reminders/clear_all_reminders.md)
+:open_file_folder: [$clear_all_reminders command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/Reminders/clear_all_reminders.md)
 
-:open_file_folder: [$course_due command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/Reminders/course_due.md)
+:open_file_folder: [$course_due command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/Reminders/course_due.md)
 
-:open_file_folder: [$delete_reminder command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/Reminders/delete_reminder.md)
+:open_file_folder: [$delete_reminder command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/Reminders/delete_reminder.md)
 
-:open_file_folder: [$due_this_week command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/Reminders/due_this_week.md)
+:open_file_folder: [$due_this_week command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/Reminders/due_this_week.md)
 
-:open_file_folder: [$due_today command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/Reminders/due_today.md)
+:open_file_folder: [$due_today command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/Reminders/due_today.md)
 
-:open_file_folder: [$list_reminders command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/Reminders/list_reminders.md)
+:open_file_folder: [$list_reminders command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/Reminders/list_reminders.md)
 
 For the pinning.py file
 
-:open_file_folder: [$pin command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/PinMessage/pin.md)
+:open_file_folder: [$pin command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/PinMessage/pin.md)
 
-:open_file_folder: [$unpin command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/PinMessage/unpin.md)
+:open_file_folder: [$unpin command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/PinMessage/unpin.md)
 
-:open_file_folder: [$pinnedmessages command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/PinMessage/pinnedmessages.md)
+:open_file_folder: [$pinnedmessages command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/PinMessage/pinnedmessages.md)
 
-:open_file_folder: [$updatepin command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/PinMessage/updatepin.md)
+:open_file_folder: [$updatepin command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/PinMessage/updatepin.md)
 
 For the groups.py file
 
-:open_file_folder: [$group command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/Groups/group.md)
+:open_file_folder: [$group command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/Groups/group.md)
 
-:open_file_folder: [$join command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/Groups/join.md)
+:open_file_folder: [$join command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/Groups/join.md)
 
-:open_file_folder: [$remove command](https://github.com/War-Keeper/ClassMateBot/blob/main/docs/Groups/remove.md)
+:open_file_folder: [$remove command](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/docs/Groups/remove.md)
 
 
 ---
@@ -221,6 +221,17 @@ For the groups.py file
 ---
 
 ## :pencil2: Contributors
+### Version 3
+[Ashwin Shankar](https://github.com/Ashwinshankar98)
+
+[Kailash Singaravelu](https://github.com/kailash1998s)
+
+[Itha Aswin](https://github.com/ithaaswin)
+
+[SaiKaushik](https://github.com/saikaushik1997)
+
+[Shakthi Nandana Govindan](https://github.com/shakthinandana)
+
 ### Version 2 
 
 [Chandrahas Reddy Mandapati](https://github.com/chandur626)
