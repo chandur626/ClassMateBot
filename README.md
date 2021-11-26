@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/badge/license-MIT-orange.svg)](https://opensource.org/licenses/MIT)
 [![DOI](https://zenodo.org/badge/418217645.svg)](https://zenodo.org/badge/latestdoi/418217645)
 [![Python application](https://github.com/Ashwinshankar98/ClassMateBot/actions/workflows/main.yml/badge.svg)](https://github.com/Ashwinshankar98/ClassMateBot/actions/workflows/main.yml)
-[![codecov](https://codecov.io/gh/chandur626/ClassMateBot/branch/main/graph/badge.svg?token=2SKMHUAZV8)](https://codecov.io/gh/chandur626/ClassMateBot)
+[![codecov](https://codecov.io/gh/Ashwinshankar98/ClassMateBot/branch/main/graph/badge.svg?token=6RRZ67UAA3)](https://codecov.io/gh/Ashwinshankar98/ClassMateBot)
 <p align="center">
   <a href="#dart-basic-overview">Basic Overview</a>
   ::
