@@ -3,7 +3,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 ![Python](https://img.shields.io/badge/python-v3.6+-yellow.svg)
 [![License](https://img.shields.io/badge/license-MIT-orange.svg)](https://opensource.org/licenses/MIT)
-[![DOI](https://zenodo.org/badge/418217645.svg)](https://zenodo.org/badge/latestdoi/418217645)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5730692.svg)](https://doi.org/10.5281/zenodo.5730692)
 [![Python application](https://github.com/Ashwinshankar98/ClassMateBot/actions/workflows/main.yml/badge.svg)](https://github.com/Ashwinshankar98/ClassMateBot/actions/workflows/main.yml)
 [![codecov](https://codecov.io/gh/Ashwinshankar98/ClassMateBot/branch/main/graph/badge.svg?token=6RRZ67UAA3)](https://codecov.io/gh/Ashwinshankar98/ClassMateBot)
 <p align="center">
