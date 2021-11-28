@@ -365,17 +365,11 @@ class Deadline(commands.Cog):
         if self.seconds == 0:
             await ctx.send("Reminder : " + text)
             await self.stop_task()
-            
+
     async def stop_task(self):
         self.remindme_timer.cancel()
 
-
-    @commands.command()
-    async def start_reminders(self, ctx):
-        self.reminder.start(ctx)
-
-    
-    @tasks.loop(hours=6)
+    @tasks.loop(seconds=10)
     async def reminder(self, ctx):
         flag = True
         for reminder in self.reminders:
@@ -390,6 +384,11 @@ class Deadline(commands.Cog):
                 send_email_notify(reminder, timedate)                                                       
         if flag:
             await ctx.send("You have no dues today..!!")
+
+    @commands.command() 
+    async def start_reminders(self, ctx):
+        self.reminder.start(ctx)
+
 
 
 
