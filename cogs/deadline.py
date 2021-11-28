@@ -5,19 +5,18 @@ updation and deletion). An user can set up a reminder, check what is due this we
 today. He/She can also check all the due homeworks based on hte course name. An user can also update
 or delete a reminder if needed.
 """
-from asyncio.windows_events import SelectorEventLoop
-import discord
-from discord.ext import commands, tasks
-import json
 import os
-import sys
+import json
 import asyncio
 import time
 from datetime import datetime
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+import discord
+from discord.ext import commands, tasks
 class Deadline(commands.Cog):
+    # pylint: disable=no-member
     """Class provides several methods to manage remainders."""
 
     def __init__(self, bot):
@@ -73,7 +72,8 @@ class Deadline(commands.Cog):
             os.chdir(cur_dir)
             json.dump(self.reminders, open("data/remindme/reminders.json", "w"))
             await ctx.send(
-                "A date has been added for: {} homework named: {} which is due on: {} by {}.".format(
+                "A date has been added for: {} homework named: {} which is due on: {} by {}.".
+                format(
                     coursename,
                     hwcount,
                     str(duedate),
@@ -378,14 +378,12 @@ class Deadline(commands.Cog):
             print(timedate)
             if timedate.date() == datetime.today().date():
                 flag = False
-                await ctx.send(
-                    "{} {} is due today at {}".format(reminder["COURSE"], reminder["HOMEWORK"],
-                                                        timedate.time()))     
-                send_email_notify(reminder, timedate)                                                       
+                await ctx.send("{} {} is due today at {}".
+                format(reminder["COURSE"], reminder["HOMEWORK"],timedate.time()))
+                send_email_notify(reminder, timedate)
         if flag:
             await ctx.send("You have no dues today..!!")
-
-    @commands.command() 
+    @commands.command()
     async def start_reminders(self, ctx):
         self.reminder.start(ctx)
 
@@ -394,8 +392,6 @@ class Deadline(commands.Cog):
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
-      
-      
         await ctx.send(
             '\nUnidentified command... Refer to $help to get the list of available commands')
 
@@ -428,38 +424,6 @@ class Deadline(commands.Cog):
                 os.chdir(cur_dir)
                 json.dump(self.reminders, open("data/remindme/reminders.json", "w"))
             await asyncio.sleep(5)
-
-    async def delete_old_reminders(self):
-        """
-            asynchronously keeps on tracking the json file for expired reminders and cleans them.
-
-            Parameters:
-
-            Returns:
-                return nothing as this is task to delete the old reminders.
-
-        """
-        while self is self.bot.get_cog("Deadline"):
-            to_remove = []
-            for reminder in self.reminders:
-                if reminder["FUTURE"] <= int(time.time()):
-                    try:
-                        print("Deleting an old reminder..!!")
-                    except (discord.errors.Forbidden, discord.errors.NotFound):
-                        to_remove.append(reminder)
-                    except discord.errors.HTTPException:
-                        pass
-                    else:
-                        to_remove.append(reminder)
-            for reminder in to_remove:
-                self.reminders.remove(reminder)
-            if to_remove:
-                cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-                os.chdir(cur_dir)
-                json.dump(self.reminders, open("data/remindme/reminders.json", "w"))
-            await asyncio.sleep(5)
-
-
 
 
 def check_folders():
@@ -498,8 +462,8 @@ def send_email_notify(reminder, timedate):
     sender_address = 'rightwritesupp0rt@gmail.com'
     sender_pass = 'WriteRight20$'
     receiver_address = json.load(open("data/email/emails.json"))
-
-    mail_content = "{} {} is due today at {}".format(reminder["COURSE"], reminder["HOMEWORK"], timedate.time())
+    mail_content = "{} {} is due today at {}".format(
+        reminder["COURSE"], reminder["HOMEWORK"], timedate.time())
 
     receiver_address = receiver_address.values()
     for receiver_email in receiver_address:
@@ -522,5 +486,3 @@ def send_email_notify(reminder, timedate):
         session.sendmail(sender_address, receiver_address, text)
         session.quit()
         print('Mail Sent')
-
-
