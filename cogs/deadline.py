@@ -5,17 +5,18 @@ updation and deletion). An user can set up a reminder, check what is due this we
 today. He/She can also check all the due homeworks based on hte course name. An user can also update
 or delete a reminder if needed.
 """
-import discord
-from discord.ext import commands
-import json
 import os
-import sys
+import json
 import asyncio
 import time
 from datetime import datetime
-
-
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+import discord
+from discord.ext import commands, tasks
 class Deadline(commands.Cog):
+    # pylint: disable=no-member
     """Class provides several methods to manage remainders."""
 
     def __init__(self, bot):
@@ -71,7 +72,8 @@ class Deadline(commands.Cog):
             os.chdir(cur_dir)
             json.dump(self.reminders, open("data/remindme/reminders.json", "w"))
             await ctx.send(
-                "A date has been added for: {} homework named: {} which is due on: {} by {}.".format(
+                "A date has been added for: {} homework named: {} which is due on: {} by {}.".
+                format(
                     coursename,
                     hwcount,
                     str(duedate),
@@ -318,7 +320,7 @@ class Deadline(commands.Cog):
 
     @commands.command(name="remindme", pass_context=True,
                       help="Request the bot to set a reminder for a due date")
-    async def remindme(self, ctx, quantity: int, time_unit: str, *, text: str):
+    async def remindme(self, ctx, quantity: int, time_unit: str, *, text: str): # pragma: no cover
         """
             Personal remind me functionality.
 
@@ -348,17 +350,48 @@ class Deadline(commands.Cog):
             await ctx.send("Text is too long.")
             return
 
-        seconds = self.units[time_unit] * quantity
-        future = int(time.time() + seconds)
+        self.seconds = self.units[time_unit] * quantity
+        future = int(time.time() + self.seconds)
 
-        self.reminders.append({"ID": author.id, "FUTURE": future, "TEXT": text})
+        #self.reminders.append({"ID": author.id, "FUTURE": future, "TEXT": text})
         await ctx.send("I will remind you that in {} {}.".format(str(quantity), time_unit + s))
-        json.dump(self.reminders, open("data/remindme/reminders.json", "w"))
+        #json.dump(self.reminders, open("data/remindme/reminders.json", "w"))
+        self.remindme_timer.start(ctx, text)
+
+
+    @tasks.loop(seconds=1)
+    async def remindme_timer(self, ctx, text): # pragma: no cover
+        self.seconds -= 1
+        if self.seconds == 0:
+            await ctx.send("Reminder : " + text)
+            await self.stop_task()
+
+    async def stop_task(self):
+        self.remindme_timer.cancel()
+
+    @tasks.loop(seconds = 15)
+    async def reminder(self, ctx): # pragma: no cover
+        flag = True
+        for reminder in self.reminders:
+            print(reminder)
+            timedate = datetime.strptime(reminder["DUEDATE"], '%Y-%m-%d %H:%M:%S')
+            print(timedate)
+            if timedate.date() == datetime.today().date():
+                flag = False
+                await ctx.send("{} {} is due today at {}".
+                format(reminder["COURSE"], reminder["HOMEWORK"],timedate.time()))
+                send_email_notify(reminder, timedate)
+        if flag:
+            await ctx.send("You have no dues today..!!")
+    @commands.command()
+    async def start_reminders(self, ctx):
+        self.reminder.start(ctx)
+
+
+
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
-      
-      
         await ctx.send(
             '\nUnidentified command... Refer to $help to get the list of available commands')
 
@@ -413,6 +446,7 @@ def check_files():
         json.dump([], open(f, "w"))
 
 
+
 def setup(bot):
     """add the file to the bot's cog system"""
     check_folders()
@@ -421,3 +455,34 @@ def setup(bot):
     loop = asyncio.get_event_loop()
     loop.create_task(n.delete_old_reminders())
     bot.add_cog(n)
+
+
+
+def send_email_notify(reminder, timedate): # pragma: no cover
+    sender_address = 'rightwritesupp0rt@gmail.com'
+    sender_pass = 'WriteRight20$'
+    receiver_address = json.load(open("data/email/emails.json"))
+    mail_content = "{} {} is due today at {}".format(
+        reminder["COURSE"], reminder["HOMEWORK"], timedate.time())
+
+    receiver_address = receiver_address.values()
+    for receiver_email in receiver_address:
+        print(receiver_email)
+        message = MIMEMultipart()
+        message['From'] = sender_address
+        message['To'] = str(receiver_email)
+        message['Subject'] = 'You have one/more assignments coming up.'   #The subject line
+        #The body and the attachments for the mail
+        message.attach(MIMEText(mail_content, 'plain'))
+        #Create SMTP session for sending the mail
+        print("email 1")
+        session = smtplib.SMTP('smtp.gmail.com', 587) #use gmail with port
+        print("email 2")
+        session.starttls() #enable security
+        print("email 3")
+        session.login(sender_address, sender_pass) #login with mail_id and password
+        print("Login success")
+        text = message.as_string()
+        session.sendmail(sender_address, receiver_address, text)
+        session.quit()
+        print('Mail Sent')
