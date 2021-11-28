@@ -53,7 +53,39 @@ class QuestionsAnswers(commands.Cog):
             await ctx.message.delete()
             await ctx.author.send('Questions can only be posted on q-and-a channel')
 
+    @commands.command()
+    async def askanonym(self, ctx, question):
+        if ctx.channel.name == 'q-and-a':
+            ''' add a question '''
+            global QUESTION_NUMBER
 
+            with open('data/qanda/qandastorage.json', 'r', encoding='utf-8') as file:
+                self.data = json.load(file)
+            if self.data:
+                QUESTION_NUMBER = len(self.data) + 1
+            else:
+                QUESTION_NUMBER = 1
+
+            # format question
+            q_str = 'Q' + str(QUESTION_NUMBER) + ': ' + question + f"\t*-Anonymous*" + '\n'
+
+            message = await ctx.send(q_str)
+
+            self.data[str(QUESTION_NUMBER)] = {
+                "question": question,
+                "author": "Anonymous",
+                "id": str(message.id),
+                "answer": ""
+            }
+            with open('data/qanda/qandastorage.json', 'w', encoding='utf-8') as file:
+                json.dump(self.data, file)
+
+            # delete original question
+            await ctx.message.delete()
+        else:
+            await ctx.message.delete()
+            await ctx.author.send('Questions can only be posted on q-and-a channel')
+            
     @commands.command()
     async def answer(self, ctx, q_num, ans):
         if ctx.channel.name == 'q-and-a':
