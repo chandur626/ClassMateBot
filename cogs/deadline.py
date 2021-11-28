@@ -320,7 +320,7 @@ class Deadline(commands.Cog):
 
     @commands.command(name="remindme", pass_context=True,
                       help="Request the bot to set a reminder for a due date")
-    async def remindme(self, ctx, quantity: int, time_unit: str, *, text: str):
+    async def remindme(self, ctx, quantity: int, time_unit: str, *, text: str): # pragma: no cover
         """
             Personal remind me functionality.
 
@@ -360,7 +360,7 @@ class Deadline(commands.Cog):
 
 
     @tasks.loop(seconds=1)
-    async def remindme_timer(self, ctx, text):
+    async def remindme_timer(self, ctx, text): # pragma: no cover
         self.seconds -= 1
         if self.seconds == 0:
             await ctx.send("Reminder : " + text)
@@ -370,7 +370,7 @@ class Deadline(commands.Cog):
         self.remindme_timer.cancel()
 
     @tasks.loop(seconds = 15)
-    async def reminder(self, ctx):
+    async def reminder(self, ctx): # pragma: no cover
         flag = True
         for reminder in self.reminders:
             print(reminder)
@@ -458,7 +458,7 @@ def setup(bot):
 
 
 
-def send_email_notify(reminder, timedate):
+def send_email_notify(reminder, timedate): # pragma: no cover
     sender_address = 'rightwritesupp0rt@gmail.com'
     sender_pass = 'WriteRight20$'
     receiver_address = json.load(open("data/email/emails.json"))
