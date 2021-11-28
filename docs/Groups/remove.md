@@ -2,7 +2,7 @@
 This command lets the student remove their name to the group member list. This is used to ensure that if a member switches groups or drops the class, then they can be removed from a group.
 
 # Location of Code
-The code that implements the above-mentioned gits functionality is located [here](https://github.com/War-Keeper/ClassMateBot/blob/main/cogs/groups.py)
+The code that implements the above-mentioned gits functionality is located [here](https://github.com/Ashwinshankar98ClassMateBot/blob/main/cogs/groups.py)
 
 # Code Description
 ## Functions
@@ -19,4 +19,4 @@ $remove
 ```
 Successful execution of this command will return a message saying you have been removed from the group.
 
-![$remove HW](https://github.com/War-Keeper/ClassMateBot/blob/main/data/media/remove.gif)
+![$remove HW](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/data/media/remove.gif)
