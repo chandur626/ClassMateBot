@@ -2,7 +2,7 @@
 This command lets the student add their name to the group member list. This is used to ensure that all students can get into a group. making sure no duplicates occur in the process
 
 # Location of Code
-The code that implements the above-mentioned gits functionality is located [here](https://github.com/War-Keeper/ClassMateBot/blob/main/cogs/groups.py)
+The code that implements the above-mentioned gits functionality is located [here](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/cogs/groups.py)
 
 # Code Description
 ## Functions
@@ -18,4 +18,4 @@ $join group 0
 ```
 Successful execution of this command will return a message saying you have joined the group.
 
-![$join HW](https://github.com/War-Keeper/ClassMateBot/blob/main/data/media/join.gif)
+![$join HW](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/data/media/join.gif)
