@@ -42,7 +42,8 @@ class TA(commands.Cog):
             srole = get(ctx.guild.roles, name=self.VERIFIED_MEMBER_ROLE)
             trole = get(ctx.guild.roles, name='TA')
             if irole in member.roles:
-                await ctx.channel.send(member.name + " is already has higher role of instructor! If you want to make just TA use remove from instructor role and try again.")
+                await ctx.channel.send(member.name + " is already has higher role of" +
+                " instructor! If you want to make just TA use remove from instructor role and try again.")
             else:
                 if trole in member.roles:
                     await ctx.channel.send(member.name + " is already a TA!")
