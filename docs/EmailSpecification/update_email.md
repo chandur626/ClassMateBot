@@ -2,7 +2,7 @@
 This command lets the users along with TA and professor to update an email address to receive attachments and notifications.
 
 # Location of Code
-The code that implements the above-mentioned gits functionality is located [here](https://github.com/chandur626/ClassMateBot/blob/main/cogs/email_address_spec.py).
+The code that implements the above-mentioned gits functionality is located [here](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/cogs/email_address_spec.py).
 
 # Code Description
 ## Functions
@@ -20,4 +20,4 @@ $update_email email_address
 $update_email noreplyclassmatebot@example.com
 ```
 Successful execution of this command will update the email address.
-<p align="left"><img width=75% src="https://github.com/chandur626/ClassMateBot/blob/main/data/media/Email_Address.gif"></p>
+<p align="left"><img width=75% src="https://github.com/Ashwinshankar98/ClassMateBot/blob/main/data/media/Email_Address.gif"></p>
