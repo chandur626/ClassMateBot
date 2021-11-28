@@ -337,6 +337,66 @@ async def test_voting(bot):
 
 
 # ---------------------------
+# Tests cogs/instructor
+# ---------------------------
+@pytest.mark.asyncio
+async def test_getinstructor(bot):
+    # Test instructor add.
+    # Test email utility by providing just recipient email address.
+    with pytest.raises(Exception):
+        await dpytest.message(content=f"$getInstructor")
+        assert dpytest.verify().message().contains().content("the Instructor")
+
+
+# ---------------------------
+# Tests cogs/TA
+# ---------------------------
+@pytest.mark.asyncio
+async def test_getTA(bot):
+    # Test instructor add.
+    # Test email utility by providing just recipient email address.
+    with pytest.raises(Exception):
+        await dpytest.message(content=f"$getTA")
+        assert dpytest.verify().message().contains().content("the TA")
+
+
+# ---------------------------
+# Tests bot/unloadCog
+# ---------------------------
+@pytest.mark.asyncio
+async def test_reloadCog(bot):
+    # Test instructor add.
+    # Test email utility by providing just recipient email address.
+    with pytest.raises(Exception):
+        await dpytest.message(content=f"$unloadCog instructor")
+        assert dpytest.verify().message().content("instructor cog has been removed")
+
+
+# ---------------------------
+# Tests bot/loadCog
+# ---------------------------
+@pytest.mark.asyncio
+async def test_reloadCog(bot):
+    # Test instructor add.
+    # Test email utility by providing just recipient email address.
+    with pytest.raises(Exception):
+        await dpytest.message(content=f"$loadCog instructor")
+        assert dpytest.verify().message().content("instructor cog has been added")
+
+
+# ---------------------------
+# Tests bot/reloadCog
+# ---------------------------
+@pytest.mark.asyncio
+async def test_reloadCog(bot):
+    # Test instructor add.
+    # Test email utility by providing just recipient email address.
+    with pytest.raises(Exception):
+        await dpytest.message(content=f"$reloadCog instructor")
+        assert dpytest.verify().message().content("instructor cog has been reloaded")
+
+
+# ---------------------------
 # Tests Utility/email_utility
 # ---------------------------
 @pytest.mark.asyncio
