@@ -364,7 +364,7 @@ async def test_getTA(bot):
 # Tests bot/unloadCog
 # ---------------------------
 @pytest.mark.asyncio
-async def test_reloadCog(bot):
+async def test_unloadCog(bot):
     # Test instructor add.
     # Test email utility by providing just recipient email address.
     with pytest.raises(Exception):
@@ -376,7 +376,7 @@ async def test_reloadCog(bot):
 # Tests bot/loadCog
 # ---------------------------
 @pytest.mark.asyncio
-async def test_reloadCog(bot):
+async def test_loadCog(bot):
     # Test instructor add.
     # Test email utility by providing just recipient email address.
     with pytest.raises(Exception):
