@@ -13,6 +13,37 @@ import pytest
 # Main file bot testing. Uses dpytest to test bot activity on a simulated server with simulated members
 # ------------------------------------------------------------------------------------------------------
 
+
+# ---------------------------
+# Tests cogs/qanda-ask
+# ---------------------------
+@pytest.mark.asyncio
+async def test_ask(bot):
+    await dpytest.message("$ask 'Question-1'")
+    assert dpytest.verify().message().contains().content(
+        'Questions can only be posted on q-and-a channel')
+
+
+# ---------------------------
+# Tests cogs/qanda-askanonym
+# ---------------------------
+@pytest.mark.asyncio
+async def test_askanonym(bot):
+    await dpytest.message("$askanonym 'Question-1'")
+    assert dpytest.verify().message().contains().content(
+        'Questions can only be posted on q-and-a channel')
+
+
+# ---------------------------
+# Tests cogs/qanda-answer
+# ---------------------------
+@pytest.mark.asyncio
+async def test_answer(bot):
+    await dpytest.message("$askanonym 'Question-1'")
+    assert dpytest.verify().message().contains().content(
+        'Questions can only be posted on q-and-a channel')
+    
+    
 # --------------------
 # Tests cogs/hello.py
 # --------------------
