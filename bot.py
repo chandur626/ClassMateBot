@@ -21,6 +21,7 @@ TOKEN = os.getenv("TOKEN")
 # Get the token for our discord server
 GUILD = os.getenv("GUILD")
 UNVERIFIED_ROLE_NAME = os.getenv("UNVERIFIED_ROLE_NAME")
+VERIFIED_MEMBER_ROLE = os.getenv("VERIFIED_MEMBER_ROLE")
 # Set the bots intents to all
 intents = Intents.all()
 # Set all bot commands to begin with $
@@ -45,57 +46,54 @@ async def on_guild_join(guild):
     if channel.permissions_for(guild.me).send_messages:
         await channel.send('Hi there, I\'m ClassMate Bot, and I\'m here' +
             'to help you manage your class discord! Let\'s do some quick setup.')
-    await guild.create_role(name=UNVERIFIED_ROLE_NAME, colour=discord.Colour(0xfffacd),
-                                    permissions=discord.Permissions.all())
-    unverified = get(guild.roles, name=UNVERIFIED_ROLE_NAME)
+    grole = await guild.create_role(name=UNVERIFIED_ROLE_NAME, colour=discord.Colour(0xfffacd))
     for member in guild.members:
         if not member.bot:
-            await member.add_roles(unverified)
+            await member.add_roles(grole)
     role = get(guild.roles, name='Instructor')
-    await guild.create_role(name="Instructor", colour=discord.Colour(0xdc143c),
-                                    permissions=discord.Permissions.all())
-    leadrole = get(guild.roles, name='Instructor')
+    irole = await guild.create_role(name="Instructor", colour=discord.Colour(0xdc143c))
     #Assign Instructor role to admin is there is no Instructor
     if role is None or len(role.members) == 0:
         leader = guild.owner
-        leadrole = get(guild.roles, name='Instructor')
+        irole = get(guild.roles, name='Instructor')
         await channel.send(leader.name + " has been given Instructor role!")
-        await leader.add_roles(leadrole, reason=None, atomic=True)
-        await leader.remove_roles(unverified)
+        await leader.add_roles(irole, reason=None, atomic=True)
+        await leader.remove_roles(grole)
     else:
         for member in role.members:
-            await member.add_roles(leadrole, reason=None, atomic=True)
-            await member.remove_roles(unverified)
-        instructors = ", ".join([str(x).rsplit("#", 1)[0] for x in leadrole.members])
-        if len(leadrole.members) == 1:
+            await member.add_roles(irole, reason=None, atomic=True)
+            await member.remove_roles(grole)
+        instructors = ", ".join([str(x).rsplit("#", 1)[0] for x in irole.members])
+        if len(irole.members) == 1:
             await channel.send(instructors + " is the Instructor!")
         else:
             await channel.send(instructors + " are the Instructors!")
     #await channel.send("To add Instructors, type \"!setInstructor @<member>\"")
     #await channel.send("To remove instructors, type \"!removeInstructor @<member>\"")
-    await guild.create_role(name="TA", colour=discord.Colour(0x00ffff),
-                                    permissions=discord.Permissions.all())
-    await guild.create_role(name="student", colour=discord.Colour(0x7289da),
-                                    permissions=discord.Permissions.all())
-    #Create Text channels if they don't exist
+    trole = await guild.create_role(name="TA", colour=discord.Colour(0x00ffff))
+    srole = await guild.create_role(name=VERIFIED_MEMBER_ROLE, colour=discord.Colour(0x7289da))
     ic_overwrites = {guild.default_role: discord.PermissionOverwrite(read_messages=False,
-        send_messages=False), leadrole: discord.PermissionOverwrite(read_messages=True,
+        send_messages=False), grole: discord.PermissionOverwrite(read_messages=False,
+        send_messages=False), srole: discord.PermissionOverwrite(read_messages=False,
+        send_messages=False), trole: discord.PermissionOverwrite(read_messages=False,
+        send_messages=False), irole: discord.PermissionOverwrite(read_messages=True,
         send_messages=True)}
-    role = get(guild.roles, name='TA')
     tc_overwrites = {guild.default_role: discord.PermissionOverwrite(read_messages=False,
-        send_messages=False), leadrole: discord.PermissionOverwrite(read_messages=True,
-        send_messages=True), role: discord.PermissionOverwrite(read_messages=True,
+        send_messages=False), grole: discord.PermissionOverwrite(read_messages=False,
+        send_messages=False), srole: discord.PermissionOverwrite(read_messages=False,
+        send_messages=False), trole: discord.PermissionOverwrite(read_messages=True,
+        send_messages=True), irole: discord.PermissionOverwrite(read_messages=True,
         send_messages=True)}
-    if get(guild.text_channels, name='instructor_channel') is None:
-        await guild.create_text_channel('instructor_channel', overwrites=ic_overwrites)
-        await channel.send("instructor_channel channel has been added!")
+    if get(guild.text_channels, name='instructor-channel') is None:
+        await guild.create_text_channel('instructor-channel', overwrites=ic_overwrites)
+        await channel.send("instructor-channel channel has been added!")
     else:
-        await channel.send("instructor_channel channel is already present!")
-    if get(guild.text_channels, name='ta_channel') is None:
-        await guild.create_text_channel('ta_channel', overwrites=tc_overwrites)
-        await channel.send("TA_channel channel has been added!")
+        await channel.send("instructor-channel channel is already present!")
+    if get(guild.text_channels, name='ta-channel') is None:
+        await guild.create_text_channel('ta-channel', overwrites=tc_overwrites)
+        await channel.send("ta-channel channel has been added!")
     else:
-        await channel.send("TA_channel channel is already present!")
+        await channel.send("ta-channel channel is already present!")
     if get(guild.text_channels, name='q-and-a') is None:
         await guild.create_text_channel('q-and-a')
         await channel.send("q-and-a channel has been added!")
@@ -207,10 +205,10 @@ async def on_raw_reaction_add(payload):
 # ------------------------------------------------------------------------------------------------------------------
 @bot.event
 async def on_member_join(member):
-    unverified = discord.utils.get(
+    grole = discord.utils.get(
         member.guild.roles, name=UNVERIFIED_ROLE_NAME
     )  # finds the unverified role in the guild
-    await member.add_roles(unverified) # assigns the unverified role to the new member
+    await member.add_roles(grole) # assigns the unverified role to the new member
     await member.send("Hello " + member.name + "!")
     await member.send(
         "Verify yourself before getting started! \n To use the verify command, do: $verify <your_full_name> \n \
