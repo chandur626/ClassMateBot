@@ -44,7 +44,36 @@ class CalAttendance(commands.Cog):
         else:
             embed.add_field(name="Absentees: 0",
                             value="None", inline=True)
+        
+        with open('data/charts/chartstorage.json', 'r', encoding='utf-8') as file:
+            storage = json.load(file)
+        quick_chart = QuickChart()
+        quick_chart.width = 500
+        quick_chart.height = 300
+        quick_chart.device_pixel_ratio = 2.0
+        quick_chart.config = {
+            "type": "pie",
+            "data": {
+                "labels": ["Attendees", "Absentees"],
+                "datasets": [{
+                    "backgroundColor": ['rgb(128, 177, 229)',
+                                        'rgb(250, 195, 149)'],
+                    "label": "attendance",
+                    "data": [len(attendees), len(absentees)]
+                }]
+            }
+        }
+        name = 'attendance'
+        link = quick_chart.get_url()
+        shortener = pyshorteners.Shortener()
+        shortened_link = shortener.tinyurl.short(link)
 
+        if not str(name) in storage:
+            storage[str(name)] = {}
+        storage[str(name)]['URL'] = shortened_link
+        with open('data/charts/chartstorage.json', 'w', encoding='utf-8') as file:
+            json.dump(storage, file, indent=4)
+            
         await ctx.send(embed=embed)
         await ctx.send(f"{shortened_link}")
 
