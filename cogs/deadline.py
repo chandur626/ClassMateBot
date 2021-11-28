@@ -369,7 +369,7 @@ class Deadline(commands.Cog):
     async def stop_task(self):
         self.remindme_timer.cancel()
 
-    @tasks.loop(seconds=10)
+    @tasks.loop(seconds = 15)
     async def reminder(self, ctx):
         flag = True
         for reminder in self.reminders:
