@@ -2,7 +2,7 @@
 This command lets the student view the amount of people there are in each group from the private discord DM with the bot. This is useful for view which groups number are taken, which groups are still empty and which groups are already full.
 
 # Location of Code
-The code that implements the above-mentioned gits functionality is located [here](https://github.com/War-Keeper/ClassMateBot/blob/main/cogs/groups.py)
+The code that implements the above-mentioned gits functionality is located [here](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/cogs/groups.py)
 
 # Code Description
 ## Functions
@@ -17,4 +17,4 @@ $group
 ```
 Successful execution of this command will display the groups and the amount of people in each group.
 
-![$group HW](https://github.com/War-Keeper/ClassMateBot/blob/main/data/media/group.gif)
+![$group HW](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/data/media/group.gif)
