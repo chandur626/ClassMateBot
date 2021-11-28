@@ -1,7 +1,7 @@
 # About $delete_email
 This command lets the users along with TA and professor to delete the current configured email address.
 # Location of Code
-The code that implements the above-mentioned gits functionality is located [here](https://github.com/chandur626/ClassMateBot/blob/main/cogs/email_address_spec.py).
+The code that implements the above-mentioned gits functionality is located [here](https://github.com/Ashwinshankar98/ClassMateBot/blob/main/cogs/email_address_spec.py).
 
 # Code Description
 ## Functions
@@ -15,4 +15,4 @@ enter the command 'delete_email'.
 $delete_email
 ```
 Successful execution of this command will configure the email address.
-<p align="left"><img width=75% src="https://github.com/chandur626/ClassMateBot/blob/main/data/media/Email_Address.gif"></p>
+<p align="left"><img width=75% src="https://github.com/Ashwinshankar98/ClassMateBot/blob/main/data/media/Email_Address.gif"></p>
